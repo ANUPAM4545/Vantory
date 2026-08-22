@@ -150,8 +150,6 @@ export default function Home() {
     setActiveMagicId(id);
   };
 
-  const [selectedRoleFilter, setSelectedRoleFilter] = useState<"ALL" | "CANDIDATE" | "COMPANY" | "INSTITUTE">("ALL");
-
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
@@ -1021,28 +1019,6 @@ export default function Home() {
             <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
               Evaluate role-based workflows, recruitment pipelines, and security standards available across candidate, employer, and institutional workspaces.
             </p>
-
-            {/* Interactive Workspace Role Filter Pills */}
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
-              {[
-                { id: "ALL", label: "✨ All Workspaces" },
-                { id: "CANDIDATE", label: "💼 Job Seekers" },
-                { id: "COMPANY", label: "🏢 Employers" },
-                { id: "INSTITUTE", label: "🎓 Academic Partners" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setSelectedRoleFilter(tab.id as "ALL" | "CANDIDATE" | "COMPANY" | "INSTITUTE")}
-                  className={`relative px-4 py-2 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
-                    selectedRoleFilter === tab.id
-                      ? "text-white bg-neutral-950 shadow-md"
-                      : "text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-950"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
           </motion.div>
 
           {/* Industrial Role Header Cards Grid - Directly Routing to Signup with Pre-Selected Role */}
@@ -1055,16 +1031,15 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
           >
             {/* Candidate Card */}
-            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "CANDIDATE") && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                transition={{ duration: 0.25 }}
-                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-neutral-950 hover:shadow-2xl transition-all group overflow-hidden"
-              >
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              whileHover={{ y: -8, scale: 1.015 }}
+              transition={{ duration: 0.25 }}
+              className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-neutral-950 hover:shadow-2xl transition-all group overflow-hidden"
+            >
                 {/* Top Accent Gradient Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neutral-950 via-emerald-500 to-neutral-950 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -1114,19 +1089,17 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
-            )}
 
             {/* Employer Card */}
-            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "COMPANY") && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                transition={{ duration: 0.25 }}
-                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-emerald-600 hover:shadow-2xl transition-all group overflow-hidden"
-              >
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              whileHover={{ y: -8, scale: 1.015 }}
+              transition={{ duration: 0.25 }}
+              className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-emerald-600 hover:shadow-2xl transition-all group overflow-hidden"
+            >
                 {/* Top Accent Gradient Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-neutral-950 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -1176,19 +1149,17 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
-            )}
 
             {/* Institute Card */}
-            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "INSTITUTE") && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -8, scale: 1.015 }}
-                transition={{ duration: 0.25 }}
-                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-blue-600 hover:shadow-2xl transition-all group overflow-hidden"
-              >
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              whileHover={{ y: -8, scale: 1.015 }}
+              transition={{ duration: 0.25 }}
+              className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-blue-600 hover:shadow-2xl transition-all group overflow-hidden"
+            >
                 {/* Top Accent Gradient Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-neutral-950 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -1238,7 +1209,6 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
-            )}
           </motion.div>
 
           {/* Interactive Enterprise Capabilities Trust Ticker Banner */}
