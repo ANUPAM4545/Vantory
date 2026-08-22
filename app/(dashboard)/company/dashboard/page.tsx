@@ -81,31 +81,15 @@ export default function CompanyDashboardPage() {
   const loadCompanyData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const [profileRes, statsRes, jobsRes, appsRes] = await Promise.all([
-        fetch("/api/company/profile"),
-        fetch("/api/company/stats"),
-        fetch("/api/company/jobs"),
-        fetch("/api/company/applications"),
-      ]);
-
-      if (profileRes.ok) {
-        const pJson = await profileRes.json();
-        if (pJson.success && pJson.profile) setProfile(pJson.profile);
-      }
-
-      if (statsRes.ok) {
-        const sJson = await statsRes.json();
-        if (sJson.success && sJson.stats) setStats(sJson.stats);
-      }
-
-      if (jobsRes.ok) {
-        const jJson = await jobsRes.json();
-        if (jJson.success && Array.isArray(jJson.jobs)) setJobs(jJson.jobs);
-      }
-
-      if (appsRes.ok) {
-        const aJson = await appsRes.json();
-        if (aJson.success && Array.isArray(aJson.applications)) setApplications(aJson.applications);
+      const res = await fetch("/api/company/summary");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
+          if (json.profile) setProfile(json.profile);
+          if (json.stats) setStats(json.stats);
+          if (Array.isArray(json.jobs)) setJobs(json.jobs);
+          if (Array.isArray(json.applications)) setApplications(json.applications);
+        }
       }
     } catch {
       // Handle silently
