@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { X, Save, RefreshCw, AlertCircle, Building2, CheckCircle2 } from "lucide-react";
+import { X, RefreshCw, AlertCircle, Building2, CheckCircle2 } from "lucide-react";
 import { useBodyScrollLock } from "@/lib/hooks/useBodyScrollLock";
 
 export interface EditJobModalProps {
@@ -461,16 +461,6 @@ export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobMo
           </button>
 
           <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-2">
-            <button
-              type="button"
-              disabled={isSubmitting || isLoadingDetails}
-              onClick={() => handleSave(false)}
-              className="w-full sm:w-auto px-4 py-2.5 bg-white border border-neutral-950 text-neutral-950 font-bold text-xs rounded-xl hover:bg-neutral-100 disabled:opacity-40 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-            >
-              <Save className="w-4 h-4 text-neutral-950" />
-              <span>Save Changes</span>
-            </button>
-
             <button
               type="button"
               disabled={isSubmitting || isLoadingDetails}

@@ -14,7 +14,6 @@ import {
   Download,
   Phone,
   MapPin,
-  Calendar,
 } from "lucide-react";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { ResumeData } from "@/lib/resume/types";
@@ -634,10 +633,9 @@ export default function CompanyApplicationsPage() {
                     <button
                       onClick={() => handleStatusChange(selectedApplication.id, "INTERVIEW")}
                       disabled={isUpdatingStatus}
-                      className="px-3.5 py-2 bg-neutral-900 text-white font-mono font-bold text-xs rounded-xl hover:bg-neutral-800 cursor-pointer shadow-xs flex items-center gap-1.5"
+                      className="px-3.5 py-2 bg-neutral-950 text-white font-mono font-bold text-xs rounded-xl hover:bg-neutral-800 cursor-pointer shadow-xs"
                     >
-                      <Calendar className="w-3.5 h-3.5 text-emerald-400 inline" />
-                      <span>Invite to Interview</span>
+                      Move to INTERVIEWING
                     </button>
                   )}
 
