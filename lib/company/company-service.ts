@@ -540,7 +540,7 @@ export async function getCompanyApplications(
 export async function updateApplicationStatusByCompany(
   companyUserId: string,
   applicationId: string,
-  newStatus: ApplicationState,
+  newStatus: ApplicationState | string,
   employerNote?: string
 ) {
   const application = await db.jobApplication.findUnique({
@@ -574,13 +574,14 @@ export async function updateApplicationStatusByCompany(
   }
 
   // Build candidate-visible timeline title
-  let timelineTitle = `Status updated to ${newStatus.replace("_", " ")}`;
-  if (newStatus === "UNDER_REVIEW") timelineTitle = "Application Under Review";
-  else if (newStatus === "SHORTLISTED") timelineTitle = "Candidate Shortlisted";
-  else if (newStatus === "INTERVIEW") timelineTitle = "Interview Scheduled";
-  else if (newStatus === "SELECTED") timelineTitle = "Candidate Selected";
-  else if (newStatus === "OFFERED") timelineTitle = "Offer Extended";
-  else if (newStatus === "REJECTED") timelineTitle = "Application Status Updated";
+  const statusStr = String(newStatus);
+  let timelineTitle = `Status updated to ${statusStr.replace("_", " ")}`;
+  if (statusStr === "UNDER_REVIEW") timelineTitle = "Application Under Review";
+  else if (statusStr === "SHORTLISTED") timelineTitle = "Candidate Shortlisted";
+  else if (statusStr === "INTERVIEW") timelineTitle = "Interview Scheduled";
+  else if (statusStr === "SELECTED") timelineTitle = "Candidate Selected";
+  else if (statusStr === "OFFERED") timelineTitle = "Offer Extended";
+  else if (statusStr === "REJECTED") timelineTitle = "Application Status Updated";
 
   timeline.push({
     status: newStatus,
@@ -592,7 +593,7 @@ export async function updateApplicationStatusByCompany(
   const updated = await db.jobApplication.update({
     where: { id: applicationId },
     data: {
-      status: newStatus,
+      status: newStatus as ApplicationState,
       timelineJson: JSON.stringify(timeline),
       notes: employerNote ? employerNote.trim() : application.notes,
     },
