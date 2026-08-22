@@ -101,6 +101,24 @@ body,
   -webkit-overflow-scrolling: touch;
 }
 
+/* Smooth button & card micro-interactions */
+button, a {
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+}
+
+button:active, a:active {
+  transform: scale(0.985);
+}
+
+.premium-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
 /* --- PRINT MEDIA STYLES FOR CLEAN 1:1 A4 RESUME VECTOR PDF EXPORT --- */
 @media print {
   @page {

@@ -6,6 +6,7 @@ import { Header } from "@/components/shell/header";
 import { MobileNav } from "@/components/shell/mobile-nav";
 import { ToastProvider } from "@/components/ui/toast";
 import { CompanyOnboardingModal } from "@/components/company/CompanyOnboardingModal";
+import { PageTransition } from "@/components/providers/PageTransition";
 
 export default function DashboardLayout({
   children,
@@ -34,7 +35,7 @@ export default function DashboardLayout({
           <Header onMobileMenuToggle={() => setIsMobileNavOpen(true)} />
 
           <main className="flex-1 p-4 sm:p-6 md:p-8 max-w-7xl w-full mx-auto space-y-6">
-            {children}
+            <PageTransition>{children}</PageTransition>
           </main>
 
           {/* Minimal SaaS Footer */}
