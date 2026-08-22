@@ -709,9 +709,9 @@ export default function Home() {
 
           {/* Right Column: Dark Preview Browser Mockup Display - Fixed Aspect Height Prevents Page Shake */}
           <div className="lg:col-span-6">
-            <div className="bg-[#09090B] text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-neutral-800 space-y-6 relative overflow-hidden font-sans min-h-[490px] flex flex-col justify-between">
+            <div className="bg-[#09090B] text-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-neutral-800 space-y-4 relative font-sans min-h-[540px] flex flex-col justify-between">
               {/* Top Address Bar */}
-              <div className="flex items-center justify-between border-b border-neutral-900 pb-4">
+              <div className="flex items-center justify-between border-b border-neutral-900 pb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-neutral-800" />
                   <div className="w-3 h-3 rounded-full bg-neutral-800" />
@@ -724,7 +724,7 @@ export default function Home() {
               </div>
 
               {/* Dynamic Feature Content Box - Advanced Interactive Sandbox */}
-              <div className="h-[370px] flex flex-col justify-between relative overflow-hidden">
+              <div className="min-h-[440px] flex-1 flex flex-col justify-between relative">
                 <AnimatePresence mode="popLayout" initial={false}>
                   {activeMagicId === "resume" && (
                     <motion.div
@@ -733,10 +733,10 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
-                      className="space-y-4 font-mono text-xs text-left h-full flex flex-col justify-between"
+                      className="space-y-3 font-mono text-xs text-left h-full flex flex-col justify-between"
                     >
                       {/* Live Compiler Status Pill */}
-                      <div className="flex items-center justify-between bg-neutral-900/90 border border-neutral-800 rounded-xl p-3">
+                      <div className="flex items-center justify-between bg-neutral-900/90 border border-neutral-800 rounded-xl p-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                           <span className="text-[11px] text-neutral-300 font-bold">LATEX 2.0 COMPILER ACTIVE</span>
@@ -747,18 +747,18 @@ export default function Home() {
                       </div>
 
                       {/* Live Mini A4 Document Mockup */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-5 space-y-3 shadow-inner flex-1 flex flex-col justify-between">
-                        <div className="border-b border-neutral-800 pb-3 flex items-center justify-between">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 space-y-2.5 shadow-inner flex-1 flex flex-col justify-between">
+                        <div className="border-b border-neutral-800 pb-2.5 flex items-center justify-between">
                           <div>
                             <div className="text-sm font-black text-white">Anupam Singh</div>
                             <div className="text-[11px] text-neutral-400">Fullstack Software Engineer • Bangalore, KA</div>
                           </div>
-                          <div className="w-8 h-8 rounded-lg bg-white text-black font-extrabold flex items-center justify-center text-xs">
+                          <div className="w-8 h-8 rounded-lg bg-white text-black font-extrabold flex items-center justify-center text-xs shrink-0">
                             LaTeX
                           </div>
                         </div>
 
-                        <div className="space-y-1.5 pt-1">
+                        <div className="space-y-1 pt-0.5">
                           <div className="text-[10px] text-neutral-400 uppercase font-bold tracking-wider">CORE SKILLS</div>
                           <div className="flex flex-wrap gap-1.5">
                             {["React", "TypeScript", "Next.js 15", "Node.js", "Prisma", "PostgreSQL"].map((s) => (
@@ -769,7 +769,7 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="space-y-1.5 pt-1">
+                        <div className="space-y-1 pt-0.5">
                           <div className="text-[10px] text-neutral-400 uppercase font-bold tracking-wider">HIGHLIGHTED EXPERIENCE</div>
                           <div className="text-[11px] text-neutral-300 space-y-1">
                             <p className="flex items-start gap-1.5">
@@ -785,14 +785,14 @@ export default function Home() {
                       </div>
 
                       {/* Interactive CTA Link */}
-                      <div className="p-3.5 bg-neutral-900/90 border border-neutral-800 rounded-xl flex items-center justify-between">
+                      <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-between shadow-sm mt-2">
                         <div>
                           <div className="text-[10px] text-neutral-400 uppercase font-bold">OUTPUT PREVIEW</div>
                           <div className="font-bold text-white text-xs mt-0.5">Publication-Grade LaTeX PDF</div>
                         </div>
                         <Link
                           href="/resume"
-                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5"
+                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5 shrink-0"
                         >
                           <span>Build Resume</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -808,10 +808,10 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
-                      className="space-y-4 font-mono text-xs text-left h-full flex flex-col justify-between"
+                      className="space-y-3 font-mono text-xs text-left h-full flex flex-col justify-between"
                     >
                       {/* Live Audio Visualizer Banner */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3.5 flex items-center justify-between">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                           <span className="text-[11px] text-white font-bold">RECORDING • SYSTEM DESIGN ROUND</span>
@@ -827,22 +827,22 @@ export default function Home() {
                       </div>
 
                       {/* Live Transcribed Speech Bubble */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 space-y-2 flex-1 flex flex-col justify-center">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-3.5 space-y-1.5 flex-1 flex flex-col justify-center">
                         <div className="text-[10px] text-neutral-400 uppercase font-bold">CANDIDATE SPEECH INPUT</div>
-                        <p className="text-[11px] text-neutral-200 italic leading-relaxed bg-neutral-950/60 p-3 rounded-xl border border-neutral-800">
+                        <p className="text-[11px] text-neutral-200 italic leading-relaxed bg-neutral-950/60 p-2.5 rounded-xl border border-neutral-800">
                           &quot;For high-concurrency event handling in Next.js 15, we utilize optimistic UI state combined with SQLite transactions via Prisma ORM to guarantee zero race conditions.&quot;
                         </p>
                       </div>
 
                       {/* AI Scoring Meter & Breakdown Chips */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3.5 space-y-1">
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3 space-y-0.5">
                           <div className="text-[10px] text-neutral-400 uppercase font-bold">SPEECH PACE</div>
                           <div className="text-base font-extrabold text-white">142 WPM</div>
                           <div className="text-[10px] text-emerald-400 font-bold">OPTIMAL VELOCITY</div>
                         </div>
 
-                        <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3.5 space-y-1">
+                        <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3 space-y-0.5">
                           <div className="text-[10px] text-neutral-400 uppercase font-bold">AI EVALUATION</div>
                           <div className="text-base font-extrabold text-white">92 / 100</div>
                           <div className="text-[10px] text-emerald-400 font-bold">EXCELLENT DEPTH</div>
@@ -850,11 +850,11 @@ export default function Home() {
                       </div>
 
                       {/* Interactive CTA Link */}
-                      <div className="p-3.5 bg-neutral-900/90 border border-neutral-800 rounded-xl flex items-center justify-between">
+                      <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-between shadow-sm mt-2">
                         <span className="text-[11px] text-neutral-300 font-bold">Ready to test your interview score?</span>
                         <Link
                           href="/mock-interview"
-                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5"
+                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5 shrink-0"
                         >
                           <span>Start Mock Interview</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -870,15 +870,15 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
-                      className="space-y-4 font-mono text-xs text-left h-full flex flex-col justify-between"
+                      className="space-y-3 font-mono text-xs text-left h-full flex flex-col justify-between"
                     >
                       {/* ATS Gauge Display */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-5 text-center space-y-3">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 text-center space-y-2">
                         <div className="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">DETERMINISTIC ATS GAUGE</div>
-                        <div className="text-5xl font-black text-white tracking-tight">94% MATCH</div>
+                        <div className="text-4xl font-black text-white tracking-tight">94% MATCH</div>
                         <div className="text-[11px] text-neutral-400 font-mono">Target Role: Senior Fullstack Architect</div>
 
-                        <div className="w-full bg-neutral-800 h-2.5 rounded-full overflow-hidden mt-2">
+                        <div className="w-full bg-neutral-800 h-2 rounded-full overflow-hidden mt-1.5">
                           <motion.div
                             initial={{ width: "0%" }}
                             animate={{ width: "94%" }}
@@ -889,7 +889,7 @@ export default function Home() {
                       </div>
 
                       {/* Gates Checklist Box */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 space-y-2 flex-1 flex flex-col justify-center">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-3.5 space-y-1.5 flex-1 flex flex-col justify-center">
                         <div className="text-[10px] text-neutral-400 uppercase font-bold">GATE CHECK RESULTS (8/8 PASSED)</div>
                         <div className="grid grid-cols-2 gap-2 text-[11px]">
                           <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
@@ -912,11 +912,11 @@ export default function Home() {
                       </div>
 
                       {/* Interactive CTA Link */}
-                      <div className="p-3.5 bg-neutral-900/90 border border-neutral-800 rounded-xl flex items-center justify-between">
+                      <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-between shadow-sm mt-2">
                         <span className="text-[11px] text-neutral-300 font-bold">Analyze your resume against any Job Description</span>
                         <Link
                           href="/ats-checker"
-                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5"
+                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5 shrink-0"
                         >
                           <span>Run ATS Scan</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -932,10 +932,10 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
-                      className="space-y-4 font-mono text-xs text-left h-full flex flex-col justify-between"
+                      className="space-y-3 font-mono text-xs text-left h-full flex flex-col justify-between"
                     >
                       {/* Active Job Card */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-4 space-y-1.5">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-xl p-3.5 space-y-1">
                         <div className="flex justify-between items-center">
                           <span className="font-extrabold text-white text-sm">Senior Frontend Engineer</span>
                           <span className="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold rounded">
@@ -946,10 +946,10 @@ export default function Home() {
                       </div>
 
                       {/* Applicant Evaluation Card */}
-                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 space-y-3 flex-1 flex flex-col justify-center">
-                        <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+                      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-3.5 space-y-2.5 flex-1 flex flex-col justify-center">
+                        <div className="flex items-center justify-between border-b border-neutral-800 pb-2.5">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-white text-black font-extrabold flex items-center justify-center text-xs">
+                            <div className="w-8 h-8 rounded-full bg-white text-black font-extrabold flex items-center justify-center text-xs shrink-0">
                               AS
                             </div>
                             <div>
@@ -957,12 +957,12 @@ export default function Home() {
                               <div className="text-[10px] text-neutral-400">Applied 12s ago • 94% ATS Match</div>
                             </div>
                           </div>
-                          <span className="px-2.5 py-1 bg-white text-black text-[10px] font-extrabold rounded">
+                          <span className="px-2.5 py-1 bg-white text-black text-[10px] font-extrabold rounded shrink-0">
                             SHORTLISTED
                           </span>
                         </div>
 
-                        <div className="flex items-center justify-between pt-1">
+                        <div className="flex items-center justify-between pt-0.5">
                           <span className="text-[10px] text-neutral-400 font-bold">HIRING ACTION:</span>
                           <div className="flex items-center gap-2">
                             <span className="px-2.5 py-1 bg-neutral-800 text-white rounded text-[10px] font-bold border border-neutral-700">
@@ -976,11 +976,11 @@ export default function Home() {
                       </div>
 
                       {/* Interactive CTA Link */}
-                      <div className="p-3.5 bg-neutral-900/90 border border-neutral-800 rounded-xl flex items-center justify-between">
+                      <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-xl flex items-center justify-between shadow-sm mt-2">
                         <span className="text-[11px] text-neutral-300 font-bold">Manage applicant pipelines & inspect resumes</span>
                         <Link
                           href="/company/applications"
-                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5"
+                          className="px-4 py-2 bg-white text-black font-bold text-xs rounded-lg hover:bg-neutral-200 transition-colors flex items-center gap-1.5 shrink-0"
                         >
                           <span>Employer Pipeline</span>
                           <ArrowRight className="w-3.5 h-3.5" />
