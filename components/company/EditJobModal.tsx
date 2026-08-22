@@ -8,7 +8,7 @@ export interface EditJobModalProps {
   jobId: string | null;
   isOpen: boolean;
   onClose: () => void;
-  onJobUpdated?: () => void;
+  onJobUpdated?: (successMsg?: string) => void;
 }
 
 export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobModalProps) {
@@ -152,12 +152,16 @@ export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobMo
         throw new Error(json.error || "Failed to update job posting.");
       }
 
-      setSuccessMsg(shouldRepublish ? "Job republished successfully!" : "Job posting updated successfully!");
-      if (onJobUpdated) onJobUpdated();
+      const msg = shouldRepublish
+        ? "🚀 Job Opening Successfully Republished! Published timestamp updated to NOW & listing promoted on Candidate Marketplace."
+        : "✅ Job Opening Successfully Updated! All modified requirements and salary parameters saved.";
+
+      setSuccessMsg(msg);
+      if (onJobUpdated) onJobUpdated(msg);
       setTimeout(() => {
         onClose();
         setSuccessMsg("");
-      }, 1200);
+      }, 1000);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to update job.");
     } finally {

@@ -18,6 +18,7 @@ import {
   Code2,
   Globe,
   Pencil,
+  X,
 } from "lucide-react";
 import { EditJobModal } from "@/components/company/EditJobModal";
 
@@ -60,6 +61,7 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
   const [error, setError] = useState<string>("");
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [topBannerMsg, setTopBannerMsg] = useState<string>("");
 
   const loadJobDetails = useCallback(async () => {
     setIsLoading(true);
@@ -87,6 +89,16 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
   useEffect(() => {
     loadJobDetails();
   }, [loadJobDetails]);
+
+  const handleJobUpdated = (msg?: string) => {
+    loadJobDetails();
+    if (msg) {
+      setTopBannerMsg(msg);
+      setTimeout(() => {
+        setTopBannerMsg("");
+      }, 6000);
+    }
+  };
 
   const handleToggleJobStatus = async () => {
     if (!job) return;
@@ -152,7 +164,31 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
     : [];
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950 font-sans p-6 md:p-10 space-y-8 selection:bg-neutral-950 selection:text-white">
+    <div className="min-h-screen bg-white text-neutral-950 font-sans p-6 md:p-10 space-y-8 selection:bg-neutral-950 selection:text-white relative">
+      {/* TOP-UP SUCCESS BANNER */}
+      {topBannerMsg && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 max-w-xl w-[90%] bg-neutral-950 text-white p-4 rounded-2xl shadow-2xl border border-neutral-800 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+              <Sparkles className="w-4.5 h-4.5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Marketplace Action Complete</h4>
+              </div>
+              <p className="text-xs text-neutral-300 mt-1 leading-relaxed font-medium">{topBannerMsg}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setTopBannerMsg("")}
+            className="text-neutral-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-neutral-800 cursor-pointer shrink-0"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
       {/* Top Header & Navigation */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
         <div className="space-y-2">
@@ -449,7 +485,7 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
         jobId={job.id}
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
-        onJobUpdated={() => loadJobDetails()}
+        onJobUpdated={handleJobUpdated}
       />
     </div>
   );

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { PlusCircle, Briefcase, RefreshCw, Eye, Pencil } from "lucide-react";
+import { PlusCircle, Briefcase, RefreshCw, Eye, Pencil, Sparkles, X } from "lucide-react";
 import { CreateJobModal } from "@/components/company/CreateJobModal";
 import { EditJobModal } from "@/components/company/EditJobModal";
 
@@ -25,6 +25,7 @@ export default function CompanyJobsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCreateJobOpen, setIsCreateJobOpen] = useState<boolean>(false);
   const [editingJobId, setEditingJobId] = useState<string | null>(null);
+  const [topBannerMsg, setTopBannerMsg] = useState<string>("");
 
   const loadJobs = useCallback(async () => {
     setIsLoading(true);
@@ -51,6 +52,16 @@ export default function CompanyJobsPage() {
     };
   }, [loadJobs]);
 
+  const handleJobUpdated = (msg?: string) => {
+    loadJobs();
+    if (msg) {
+      setTopBannerMsg(msg);
+      setTimeout(() => {
+        setTopBannerMsg("");
+      }, 6000);
+    }
+  };
+
   const handleToggleJobStatus = async (jobId: string, currentStatus: string) => {
     const nextStatus = currentStatus === "ACTIVE" ? "CLOSED" : "ACTIVE";
     try {
@@ -68,7 +79,31 @@ export default function CompanyJobsPage() {
   };
 
   return (
-    <div className="space-y-6 selection:bg-neutral-950 selection:text-white font-sans">
+    <div className="space-y-6 selection:bg-neutral-950 selection:text-white font-sans relative">
+      {/* TOP-UP SUCCESS BANNER */}
+      {topBannerMsg && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 max-w-xl w-[90%] bg-neutral-950 text-white p-4 rounded-2xl shadow-2xl border border-neutral-800 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+              <Sparkles className="w-4.5 h-4.5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Marketplace Action Complete</h4>
+              </div>
+              <p className="text-xs text-neutral-300 mt-1 leading-relaxed font-medium">{topBannerMsg}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setTopBannerMsg("")}
+            className="text-neutral-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-neutral-800 cursor-pointer shrink-0"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
         <div>
@@ -202,7 +237,7 @@ export default function CompanyJobsPage() {
         jobId={editingJobId}
         isOpen={Boolean(editingJobId)}
         onClose={() => setEditingJobId(null)}
-        onJobUpdated={() => loadJobs()}
+        onJobUpdated={handleJobUpdated}
       />
     </div>
   );
