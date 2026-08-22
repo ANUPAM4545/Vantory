@@ -14,6 +14,7 @@ import {
   Download,
   Phone,
   MapPin,
+  CheckCircle2,
 } from "lucide-react";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { ResumeData } from "@/lib/resume/types";
@@ -60,6 +61,7 @@ export default function CompanyApplicationsPage() {
   const [employerNoteInput, setEmployerNoteInput] = useState<string>("");
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false);
   const [statusUpdateError, setStatusUpdateError] = useState<string>("");
+  const [topBannerMsg, setTopBannerMsg] = useState<string | null>(null);
 
   // Full Screen Resume Preview Modal State
   const [activeResumePreviewData, setActiveResumePreviewData] = useState<ResumeData | null>(null);
@@ -223,11 +225,31 @@ export default function CompanyApplicationsPage() {
         throw new Error(json.error || "Failed to update application status.");
       }
 
-      await loadData();
+      const statusLabels: Record<string, string> = {
+        UNDER_REVIEW: "Under Review",
+        SHORTLISTED: "Shortlisted",
+        INTERVIEW: "Interviewing",
+        SELECTED: "Selected",
+        OFFERED: "Job Offer Extended",
+        REJECTED: "Rejected",
+      };
+
+      const statusName = statusLabels[newStatus] || newStatus;
+      setTopBannerMsg(`🎉 Candidate application status successfully updated to ${statusName}!`);
 
       if (selectedApplication && selectedApplication.id === applicationId) {
         setSelectedApplication((prev) => (prev ? { ...prev, status: newStatus, employerNotes: employerNoteInput } : null));
       }
+
+      setApplications((prev) =>
+        prev.map((app) => (app.id === applicationId ? { ...app, status: newStatus, employerNotes: employerNoteInput } : app))
+      );
+
+      setTimeout(() => {
+        setTopBannerMsg(null);
+      }, 5000);
+
+      await loadData();
     } catch (err: unknown) {
       setStatusUpdateError(err instanceof Error ? err.message : "Error updating status.");
     } finally {
@@ -273,7 +295,17 @@ export default function CompanyApplicationsPage() {
   });
 
   return (
-    <div className="space-y-6 selection:bg-neutral-950 selection:text-white font-sans">
+    <div className="space-y-6 selection:bg-neutral-950 selection:text-white font-sans relative">
+      {topBannerMsg && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[999999] bg-neutral-950 text-white px-6 py-3 rounded-2xl shadow-2xl border border-neutral-800 flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-200">
+          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+          <span className="text-xs font-mono font-bold">{topBannerMsg}</span>
+          <button onClick={() => setTopBannerMsg(null)} className="ml-2 text-neutral-400 hover:text-white cursor-pointer">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
         <div>
@@ -651,7 +683,7 @@ export default function CompanyApplicationsPage() {
                     </button>
                   )}
 
-                  {(selectedApplication.status === "SELECTED" || selectedApplication.status === "INTERVIEW" || selectedApplication.status === "SHORTLISTED") && (
+                  {selectedApplication.status !== "OFFERED" && selectedApplication.status !== "REJECTED" && selectedApplication.status !== "WITHDRAWN" && (
                     <button
                       onClick={() => handleStatusChange(selectedApplication.id, "OFFERED")}
                       disabled={isUpdatingStatus}

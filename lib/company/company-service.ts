@@ -575,12 +575,12 @@ export async function updateApplicationStatusByCompany(
 
   // Build candidate-visible timeline title
   let timelineTitle = `Status updated to ${newStatus.replace("_", " ")}`;
-  if (newStatus === ApplicationState.UNDER_REVIEW) timelineTitle = "Application Under Review";
-  else if (newStatus === ApplicationState.SHORTLISTED) timelineTitle = "Candidate Shortlisted";
-  else if (newStatus === ApplicationState.INTERVIEW) timelineTitle = "Interview Scheduled";
-  else if (newStatus === ApplicationState.SELECTED) timelineTitle = "Candidate Selected";
-  else if (newStatus === ApplicationState.OFFERED) timelineTitle = "Offer Extended";
-  else if (newStatus === ApplicationState.REJECTED) timelineTitle = "Application Status Updated";
+  if (newStatus === "UNDER_REVIEW") timelineTitle = "Application Under Review";
+  else if (newStatus === "SHORTLISTED") timelineTitle = "Candidate Shortlisted";
+  else if (newStatus === "INTERVIEW") timelineTitle = "Interview Scheduled";
+  else if (newStatus === "SELECTED") timelineTitle = "Candidate Selected";
+  else if (newStatus === "OFFERED") timelineTitle = "Offer Extended";
+  else if (newStatus === "REJECTED") timelineTitle = "Application Status Updated";
 
   timeline.push({
     status: newStatus,
