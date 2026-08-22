@@ -346,33 +346,12 @@ CRITICAL INSTRUCTIONS:
   "alternativeText": "Full, publication-grade, professional resume rewrite option 2."
 }`;
 
-  // Discover supported models from Google API
-  let availableModels: string[] = [];
-  try {
-    const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
-    if (listRes.ok) {
-      const listJson = await listRes.json();
-      if (Array.isArray(listJson.models)) {
-        availableModels = listJson.models
-          .filter((m: { supportedGenerationMethods?: string[] }) =>
-            m.supportedGenerationMethods?.includes("generateContent")
-          )
-          .map((m: { name: string }) => m.name.replace(/^models\//, ""));
-      }
-    }
-  } catch {
-    // Proceed to candidate array
-  }
-
-  const candidateModels = Array.from(
-    new Set([
-      ...availableModels,
-      "gemini-2.0-flash",
-      "gemini-1.5-flash-latest",
-      "gemini-1.5-pro",
-      "gemini-1.5-flash",
-    ])
-  );
+  const candidateModels = [
+    "gemini-2.0-flash",
+    "gemini-1.5-flash-latest",
+    "gemini-1.5-flash",
+    "gemini-1.5-pro",
+  ];
 
   for (const modelName of candidateModels) {
     try {
