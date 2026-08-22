@@ -185,8 +185,8 @@ export default function Home() {
           <nav className="hidden md:flex items-center gap-8 sm:gap-10 text-sm font-bold text-neutral-600">
             <a href="#magic-section" className="hover:text-neutral-950 transition-colors">Features</a>
             <a href="#portals" className="hover:text-neutral-950 transition-colors">Solutions</a>
-            <a href="#portals" className="hover:text-neutral-950 transition-colors">Pricing</a>
-            <Link href="/resume" className="hover:text-neutral-950 transition-colors">Documentation</Link>
+            <a href="#pricing" className="hover:text-neutral-950 transition-colors">Pricing</a>
+            <a href="#docs" className="hover:text-neutral-950 transition-colors">Documentation</a>
             <a href="#faq" className="hover:text-neutral-950 transition-colors">Contact</a>
           </nav>
 
@@ -1649,6 +1649,255 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING SECTION */}
+      <section id="pricing" className="py-36 sm:py-48 bg-white border-t border-neutral-200/80 px-6 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto space-y-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-4 max-w-2xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono font-extrabold uppercase tracking-widest text-neutral-600 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>TRANSPARENT PRICING & PLANS</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
+              Flexible Plans for Every Career Goal
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
+              Start building publication-ready LaTeX resumes and practicing AI interviews for free, or scale with enterprise employer tools.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {/* Free Plan */}
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md hover:border-neutral-400 hover:shadow-xl transition-all flex flex-col justify-between space-y-6"
+            >
+              <div className="space-y-5">
+                <span className="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full font-mono text-[10px] font-extrabold border border-neutral-200 tracking-wider">
+                  CANDIDATE STARTER
+                </span>
+                <div>
+                  <div className="text-4xl font-extrabold text-neutral-950 tracking-tight font-mono">₹0</div>
+                  <p className="text-xs text-neutral-500 mt-1">Free Forever • No Credit Card Required</p>
+                </div>
+
+                <div className="space-y-2.5 pt-4 border-t border-neutral-100 text-xs font-mono text-neutral-700">
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>1 LaTeX Resume & A4 Vector Export</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>ATS Keyword Match Scanner (5 scans/mo)</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>3 AI Voice Interview Practice Rounds</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>1-Click Verified Applications</span>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/register?role=candidate"
+                className="w-full py-3.5 bg-neutral-100 text-neutral-950 font-extrabold text-xs rounded-full hover:bg-neutral-200 transition-all text-center flex items-center justify-center gap-2"
+              >
+                <span>Get Started Free</span>
+                <ArrowRight className="w-4 h-4 text-neutral-950" />
+              </Link>
+            </motion.div>
+
+            {/* Pro Candidate Plan (Popular) */}
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="relative bg-neutral-950 text-white rounded-3xl p-8 shadow-2xl transition-all flex flex-col justify-between space-y-6 border border-neutral-800"
+            >
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full font-mono text-[10px] font-extrabold border border-emerald-500/30 tracking-wider">
+                    MOST POPULAR
+                  </span>
+                  <Sparkles className="w-5 h-5 text-emerald-400" />
+                </div>
+
+                <div>
+                  <div className="text-4xl font-extrabold text-white tracking-tight font-mono">₹499 <span className="text-xs text-neutral-400 font-sans font-normal">/ month</span></div>
+                  <p className="text-xs text-neutral-400 mt-1">For Ambitious Job Seekers & Engineers</p>
+                </div>
+
+                <div className="space-y-2.5 pt-4 border-t border-neutral-800 text-xs font-mono text-neutral-300">
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Unlimited LaTeX Resumes & Custom Templates</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Real-Time Unlimited ATS Keyword Scans</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Unlimited Voice AI Mock Interviews</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Speech Equalizer & 7-Day Prep Roadmap</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Candidate Verified Recruiter Badge</span>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/register?role=candidate"
+                className="w-full py-3.5 bg-white text-neutral-950 font-extrabold text-xs rounded-full hover:bg-neutral-100 transition-all text-center flex items-center justify-center gap-2 shadow-lg"
+              >
+                <span>Upgrade to Pro Suite</span>
+                <ArrowRight className="w-4 h-4 text-neutral-950" />
+              </Link>
+            </motion.div>
+
+            {/* Enterprise & Institute Plan */}
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md hover:border-neutral-400 hover:shadow-xl transition-all flex flex-col justify-between space-y-6"
+            >
+              <div className="space-y-5">
+                <span className="px-3 py-1 bg-blue-500/10 text-blue-700 rounded-full font-mono text-[10px] font-extrabold border border-blue-500/20 tracking-wider">
+                  ENTERPRISE & CAMPUS
+                </span>
+                <div>
+                  <div className="text-4xl font-extrabold text-neutral-950 tracking-tight font-mono">₹4,999 <span className="text-xs text-neutral-500 font-sans font-normal">/ month</span></div>
+                  <p className="text-xs text-neutral-500 mt-1">For Verified Corporate Employers & Universities</p>
+                </div>
+
+                <div className="space-y-2.5 pt-4 border-t border-neutral-100 text-xs font-mono text-neutral-700">
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>Employer Control Plane & Job Posting</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>6-Stage Candidate Pipeline Escalation</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>Institute Batch Roster & QR Badges</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>Campus Placement Drive Synchronization</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <span>Prompt-Guard Security Audit Stream</span>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/register?role=company"
+                className="w-full py-3.5 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2"
+              >
+                <span>Register Corporate Portal</span>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* DOCUMENTATION & ARCHITECTURE SECTION */}
+      <section id="docs" className="py-36 sm:py-48 bg-[#F8F9FA] border-t border-neutral-200/80 px-6">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-4 max-w-2xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-neutral-200 text-[10px] font-mono font-extrabold uppercase tracking-widest text-neutral-600 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+              <span>PLATFORM DOCUMENTATION & ARCHITECTURE</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
+              Built on Modern Monolithic Standards
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
+              Explore the technical architecture, zero-fallback APIs, and deterministic engines powering SkillAssociate.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            {/* Doc Card 1 */}
+            <div className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md space-y-4 hover:border-neutral-400 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-neutral-950 text-white flex items-center justify-center font-mono font-bold text-xs">
+                01
+              </div>
+              <h3 className="text-xl font-extrabold text-neutral-950">LaTeX 2.0 Vector Compilation</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                The document compiler uses strict A4 margin mathematics to eliminate text truncation and font overlap. PDF output is compiled natively to 300 DPI vector specifications to guarantee 100% readability across top Applicant Tracking Systems.
+              </p>
+              <div className="p-3 bg-neutral-950 text-emerald-400 font-mono text-[11px] rounded-xl overflow-x-auto">
+                <code>{`pdflatex -interaction=nonstopmode -output-directory=/tmp resume.tex`}</code>
+              </div>
+            </div>
+
+            {/* Doc Card 2 */}
+            <div className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md space-y-4 hover:border-neutral-400 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-neutral-950 text-white flex items-center justify-center font-mono font-bold text-xs">
+                02
+              </div>
+              <h3 className="text-xl font-extrabold text-neutral-950">Voice AI Speech Matrix & WPM</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Speech input is evaluated in real-time via Web Speech APIs. The engine calculates word velocity (WPM), technical keyword density, and filler word ratios to generate adaptive 7-day preparation roadmaps.
+              </p>
+              <div className="p-3 bg-neutral-950 text-purple-400 font-mono text-[11px] rounded-xl overflow-x-auto">
+                <code>{`evaluateSpeech({ transcript, durationMs }) => { wpm: 142, depth: 'HIGH' }`}</code>
+              </div>
+            </div>
+
+            {/* Doc Card 3 */}
+            <div className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md space-y-4 hover:border-neutral-400 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-neutral-950 text-white flex items-center justify-center font-mono font-bold text-xs">
+                03
+              </div>
+              <h3 className="text-xl font-extrabold text-neutral-950">ATS Taxonomical Keyword Matching</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Scans job descriptions against candidate skills using exact matching, alias normalization, and related skill taxonomy evaluation. Built-in Prompt Guard neutralizes prompt injection attacks embedded in job listings.
+              </p>
+              <div className="p-3 bg-neutral-950 text-blue-400 font-mono text-[11px] rounded-xl overflow-x-auto">
+                <code>{`scanAtsCompliance(resumeText, jobDescription) => { score: 94, missingKeywords: [...] }`}</code>
+              </div>
+            </div>
+
+            {/* Doc Card 4 */}
+            <div className="bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-md space-y-4 hover:border-neutral-400 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-neutral-950 text-white flex items-center justify-center font-mono font-bold text-xs">
+                04
+              </div>
+              <h3 className="text-xl font-extrabold text-neutral-950">Prisma ORM & Full-Viewport React Portals</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Database queries execute directly via Prisma ORM on a local SQLite store. All interactive modals use React <code className="text-neutral-950 font-bold">createPortal(..., document.body)</code> for full viewport overlay rendering free of z-index clipping.
+              </p>
+              <div className="p-3 bg-neutral-950 text-amber-400 font-mono text-[11px] rounded-xl overflow-x-auto">
+                <code>{`createPortal(<ModalContent />, document.body)`}</code>
+              </div>
+            </div>
           </div>
         </div>
       </section>
