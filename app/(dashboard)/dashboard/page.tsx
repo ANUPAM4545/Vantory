@@ -67,52 +67,16 @@ export default function CandidateDashboardPage() {
     async function loadDashboardData() {
       setIsLoading(true);
       try {
-        const [userRes, resumesRes, scansRes, appsRes, savedRes, jobsRes] = await Promise.all([
-          fetch("/api/auth/me").catch(() => null),
-          fetch("/api/resumes").catch(() => null),
-          fetch("/api/ats/scans").catch(() => null),
-          fetch("/api/applications").catch(() => null),
-          fetch("/api/jobs/saved").catch(() => null),
-          fetch("/api/jobs?limit=3").catch(() => null),
-        ]);
-
-        if (userRes?.ok) {
-          const userJson = await userRes.json();
-          if (userJson.success && userJson.user) setUser(userJson.user);
-        }
-
-        if (resumesRes?.ok) {
-          const resumesJson = await resumesRes.json();
-          if (resumesJson.success && Array.isArray(resumesJson.resumes)) {
-            setResumes(resumesJson.resumes);
-          }
-        }
-
-        if (scansRes?.ok) {
-          const scansJson = await scansRes.json();
-          if (scansJson.success && Array.isArray(scansJson.scans)) {
-            setAtsScans(scansJson.scans);
-          }
-        }
-
-        if (appsRes?.ok) {
-          const appsJson = await appsRes.json();
-          if (appsJson.success && Array.isArray(appsJson.applications)) {
-            setApplications(appsJson.applications);
-          }
-        }
-
-        if (savedRes?.ok) {
-          const savedJson = await savedRes.json();
-          if (savedJson.success && Array.isArray(savedJson.savedJobs)) {
-            setSavedJobsCount(savedJson.savedJobs.length);
-          }
-        }
-
-        if (jobsRes?.ok) {
-          const jobsJson = await jobsRes.json();
-          if (jobsJson.success && Array.isArray(jobsJson.jobs)) {
-            setRecentJobs(jobsJson.jobs.slice(0, 3));
+        const res = await fetch("/api/dashboard/summary");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success) {
+            if (json.user) setUser(json.user);
+            if (Array.isArray(json.resumes)) setResumes(json.resumes);
+            if (Array.isArray(json.atsScans)) setAtsScans(json.atsScans);
+            if (Array.isArray(json.applications)) setApplications(json.applications);
+            if (typeof json.savedJobsCount === "number") setSavedJobsCount(json.savedJobsCount);
+            if (Array.isArray(json.recentJobs)) setRecentJobs(json.recentJobs);
           }
         }
       } catch {
