@@ -6,6 +6,16 @@ import {
   type StudentRawMetrics,
 } from "./readiness-engine";
 
+export type StudentWithMetricsPayload = Prisma.UserGetPayload<{
+  include: {
+    profile: true;
+    resumes: { select: { id: true } };
+    atsScans: { select: { overallScore: true } };
+    interviews: { select: { overallScore: true } };
+    applications: { select: { status: true } };
+  };
+}>;
+
 export interface StudentFilterInput {
   search?: string;
   department?: string;
@@ -155,16 +165,6 @@ async function getRawStudentMetricsForInstitute(instituteId: string) {
       applications: { select: { status: true } },
     },
   });
-
-type StudentWithMetricsPayload = Prisma.UserGetPayload<{
-  include: {
-    profile: true;
-    resumes: { select: { id: true } };
-    atsScans: { select: { overallScore: true } };
-    interviews: { select: { overallScore: true } };
-    applications: { select: { status: true } };
-  };
-}>;
 
   return students.map((s: StudentWithMetricsPayload) => {
     const resumesCount = s.resumes.length;
