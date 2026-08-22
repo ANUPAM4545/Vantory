@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useId } from "react";
+import React, { useEffect, useState, useId } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -25,6 +26,11 @@ export function Modal({
 }: ModalProps) {
   const titleId = useId();
   const descriptionId = useId();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Use body scroll lock hook exclusively for overflow & padding-right compensation
   useBodyScrollLock(isOpen);
@@ -42,11 +48,13 @@ export function Modal({
     };
   }, [isOpen, onClose]);
 
-  return (
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-neutral-950/85 backdrop-blur-sm overflow-y-auto p-4 sm:p-6 selection:bg-neutral-900 selection:text-white custom-scrollbar"
+          className="fixed inset-0 z-[9999] bg-neutral-950/85 backdrop-blur-sm overflow-y-auto p-4 sm:p-6 selection:bg-neutral-900 selection:text-white custom-scrollbar"
           data-lenis-prevent="true"
           data-lenis-prevent-wheel="true"
           data-lenis-prevent-touch="true"
@@ -99,6 +107,7 @@ export function Modal({
           </div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
