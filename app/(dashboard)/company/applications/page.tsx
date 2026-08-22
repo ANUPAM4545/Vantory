@@ -661,7 +661,7 @@ export default function CompanyApplicationsPage() {
       {/* FULL SCREEN A4 RESUME PREVIEW MODAL */}
       {activeResumePreviewData && (
         <div
-          className="fixed inset-0 z-50 bg-neutral-950 overflow-y-auto flex flex-col items-center selection:bg-neutral-900 selection:text-white custom-scrollbar"
+          className="fixed inset-0 z-[100] bg-neutral-950 overflow-y-auto flex flex-col items-center selection:bg-neutral-900 selection:text-white custom-scrollbar"
           data-lenis-prevent="true"
           data-lenis-prevent-wheel="true"
           data-lenis-prevent-touch="true"
@@ -677,7 +677,7 @@ export default function CompanyApplicationsPage() {
             role="dialog"
             aria-modal="true"
             aria-label="Full Screen A4 Resume Preview"
-            className="w-full bg-white text-neutral-950 px-4 sm:px-8 py-3.5 border-b border-neutral-200 shadow-md flex items-center justify-between gap-4 z-50 shrink-0 sticky top-0"
+            className="w-full bg-white text-neutral-950 px-4 sm:px-8 py-3.5 border-b border-neutral-200 shadow-md flex items-center justify-between gap-4 z-[101] shrink-0 sticky top-0"
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-neutral-950 text-white flex items-center justify-center font-bold text-xs shadow-xs">
