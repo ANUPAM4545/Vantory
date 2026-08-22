@@ -158,31 +158,31 @@ export default function Home() {
     <div className="min-h-screen bg-[#F8F9FA] text-neutral-950 font-sans selection:bg-neutral-950 selection:text-white overflow-x-hidden">
       {/* Floating Pill Header Bar (Smart Hide on Scroll Down / Show on Scroll Up) */}
       <header
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 sm:px-6 transition-all duration-300 pointer-events-auto ${
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-4 sm:px-8 transition-all duration-300 pointer-events-auto ${
           isNavVisible
             ? "translate-y-0 opacity-100"
             : "-translate-y-28 opacity-0 pointer-events-none"
         }`}
       >
         <div
-          className={`rounded-full px-5 sm:px-6 py-2.5 flex items-center justify-between transition-all duration-300 ${
+          className={`rounded-full px-6 sm:px-8 py-3.5 flex items-center justify-between transition-all duration-300 ${
             isScrolled
-              ? "bg-white/85 backdrop-blur-xl border border-neutral-200/90 shadow-xl shadow-black/5"
-              : "bg-white/75 backdrop-blur-lg border border-neutral-200/80 shadow-md"
+              ? "bg-white/90 backdrop-blur-xl border border-neutral-200 shadow-xl shadow-black/5"
+              : "bg-white/80 backdrop-blur-lg border border-neutral-200/90 shadow-md"
           }`}
         >
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-full bg-neutral-950 text-white font-extrabold flex items-center justify-center text-xs tracking-tight shadow-sm group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-full bg-neutral-950 text-white font-extrabold flex items-center justify-center text-sm tracking-tight shadow-md group-hover:scale-105 transition-transform">
               S
             </div>
-            <span className="font-extrabold tracking-tight text-base text-neutral-950 font-sans">
+            <span className="font-extrabold tracking-tight text-lg sm:text-xl text-neutral-950 font-sans">
               SkillAssociate
             </span>
           </Link>
 
-          {/* Navigation Links (Matching Reference Image 2 Layout & Text) */}
-          <nav className="hidden md:flex items-center gap-6 sm:gap-7 text-xs font-semibold text-neutral-500">
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-8 sm:gap-10 text-sm font-bold text-neutral-600">
             <a href="#magic-section" className="hover:text-neutral-950 transition-colors">Features</a>
             <a href="#portals" className="hover:text-neutral-950 transition-colors">Solutions</a>
             <a href="#portals" className="hover:text-neutral-950 transition-colors">Pricing</a>
@@ -191,16 +191,16 @@ export default function Home() {
           </nav>
 
           {/* Header Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href="/login"
-              className="text-xs font-bold text-neutral-600 hover:text-neutral-950 transition-colors px-2.5 py-1.5"
+              className="text-sm font-bold text-neutral-700 hover:text-neutral-950 transition-colors px-3 py-2"
             >
               Sign In
             </Link>
             <Link
               href="/register"
-              className="text-xs font-extrabold bg-neutral-950 text-white hover:bg-neutral-800 transition-all px-5 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105"
+              className="text-sm font-extrabold bg-neutral-950 text-white hover:bg-neutral-800 transition-all px-6 py-2.5 rounded-full shadow-md hover:shadow-lg hover:scale-105"
             >
               Get Started
             </Link>
@@ -1210,32 +1210,6 @@ export default function Home() {
                 </Link>
               </motion.div>
           </motion.div>
-
-          {/* Interactive Enterprise Capabilities Trust Ticker Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="pt-8 border-t border-neutral-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-          >
-            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">10,000+</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">LaTeX Vector Resumes</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">98.4%</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">ATS Match Accuracy</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">500+</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">Verified Openings</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">100%</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">Prompt-Guard Secured</span>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -1431,32 +1405,6 @@ export default function Home() {
                 <span className="text-blue-600 font-bold">JWT SESSION SECURE</span>
               </div>
             </motion.div>
-          </motion.div>
-
-          {/* Live System Velocity Ticker Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="pt-8 border-t border-neutral-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-          >
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all shadow-xs">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">118ms</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">Avg. LaTeX Compile</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all shadow-xs">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">&lt; 50ms</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">AI Speech Latency</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all shadow-xs">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">4ms</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">Prisma Query Latency</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all shadow-xs">
-              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">100%</span>
-              <span className="text-[11px] font-mono text-neutral-500 block">Zero Mock Data</span>
-            </div>
           </motion.div>
         </div>
       </section>
