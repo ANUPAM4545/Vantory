@@ -19,6 +19,7 @@ import {
   LogOut,
   X,
   Plus,
+  FileCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CreateJobModal } from "@/components/company/CreateJobModal";
@@ -33,6 +34,7 @@ export interface NavItem {
 export const primaryNavItems: NavItem[] = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Jobs & Careers", href: "/jobs", icon: Briefcase },
+  { name: "My Applications", href: "/jobs/applications", icon: FileCheck },
   { name: "Resume Builder", href: "/resume", icon: FileText },
   { name: "ATS Score Checker", href: "/ats-checker", icon: BarChart3 },
   { name: "AI Mock Interview", href: "/mock-interview", icon: Bot },
