@@ -244,7 +244,9 @@ export default function CompanyApplicationsPage() {
       case "SHORTLISTED":
         return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">SHORTLISTED</span>;
       case "INTERVIEW":
-        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">INTERVIEW</span>;
+        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">INTERVIEWING</span>;
+      case "SELECTED":
+        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">SELECTED</span>;
       case "OFFERED":
         return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">OFFERED</span>;
       case "WITHDRAWN":
@@ -629,7 +631,7 @@ export default function CompanyApplicationsPage() {
                     </button>
                   )}
 
-                  {selectedApplication.status !== "INTERVIEW" && selectedApplication.status !== "OFFERED" && selectedApplication.status !== "REJECTED" && selectedApplication.status !== "WITHDRAWN" && (
+                  {selectedApplication.status !== "INTERVIEW" && selectedApplication.status !== "SELECTED" && selectedApplication.status !== "OFFERED" && selectedApplication.status !== "REJECTED" && selectedApplication.status !== "WITHDRAWN" && (
                     <button
                       onClick={() => handleStatusChange(selectedApplication.id, "INTERVIEW")}
                       disabled={isUpdatingStatus}
@@ -639,7 +641,17 @@ export default function CompanyApplicationsPage() {
                     </button>
                   )}
 
-                  {(selectedApplication.status === "INTERVIEW" || selectedApplication.status === "SHORTLISTED") && (
+                  {selectedApplication.status !== "SELECTED" && selectedApplication.status !== "OFFERED" && selectedApplication.status !== "REJECTED" && selectedApplication.status !== "WITHDRAWN" && (
+                    <button
+                      onClick={() => handleStatusChange(selectedApplication.id, "SELECTED")}
+                      disabled={isUpdatingStatus}
+                      className="px-3.5 py-2 bg-neutral-950 text-white font-mono font-bold text-xs rounded-xl hover:bg-neutral-800 cursor-pointer shadow-xs"
+                    >
+                      Mark as SELECTED
+                    </button>
+                  )}
+
+                  {(selectedApplication.status === "SELECTED" || selectedApplication.status === "INTERVIEW" || selectedApplication.status === "SHORTLISTED") && (
                     <button
                       onClick={() => handleStatusChange(selectedApplication.id, "OFFERED")}
                       disabled={isUpdatingStatus}

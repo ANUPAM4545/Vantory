@@ -83,7 +83,9 @@ export default function ApplicationsTrackingPage() {
       case "SHORTLISTED":
         return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">SHORTLISTED</span>;
       case "INTERVIEW":
-        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">INTERVIEW</span>;
+        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">INTERVIEWING</span>;
+      case "SELECTED":
+        return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">SELECTED</span>;
       case "OFFERED":
         return <span className="px-2.5 py-0.5 rounded font-mono text-[10px] font-bold bg-neutral-950 text-white">OFFERED</span>;
       case "WITHDRAWN":

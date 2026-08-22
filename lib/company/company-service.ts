@@ -33,12 +33,13 @@ export interface UpdateCompanyJobInput extends Partial<CreateCompanyJobInput> {
  * Valid Status Transitions Matrix
  */
 const VALID_TRANSITIONS: Record<string, string[]> = {
-  APPLIED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.REJECTED],
-  UNDER_REVIEW: [ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.REJECTED],
-  SHORTLISTED: [ApplicationState.INTERVIEW, ApplicationState.OFFERED, ApplicationState.REJECTED],
-  INTERVIEW: [ApplicationState.OFFERED, ApplicationState.REJECTED],
+  APPLIED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.SELECTED, ApplicationState.REJECTED],
+  UNDER_REVIEW: [ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.SELECTED, ApplicationState.REJECTED],
+  SHORTLISTED: [ApplicationState.INTERVIEW, ApplicationState.SELECTED, ApplicationState.OFFERED, ApplicationState.REJECTED],
+  INTERVIEW: [ApplicationState.SELECTED, ApplicationState.OFFERED, ApplicationState.REJECTED],
+  SELECTED: [ApplicationState.OFFERED, ApplicationState.REJECTED],
   OFFERED: [ApplicationState.REJECTED],
-  REJECTED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW],
+  REJECTED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.SELECTED],
   WITHDRAWN: [],
 };
 
@@ -577,6 +578,7 @@ export async function updateApplicationStatusByCompany(
   if (newStatus === ApplicationState.UNDER_REVIEW) timelineTitle = "Application Under Review";
   else if (newStatus === ApplicationState.SHORTLISTED) timelineTitle = "Candidate Shortlisted";
   else if (newStatus === ApplicationState.INTERVIEW) timelineTitle = "Interview Scheduled";
+  else if (newStatus === ApplicationState.SELECTED) timelineTitle = "Candidate Selected";
   else if (newStatus === ApplicationState.OFFERED) timelineTitle = "Offer Extended";
   else if (newStatus === ApplicationState.REJECTED) timelineTitle = "Application Status Updated";
 
