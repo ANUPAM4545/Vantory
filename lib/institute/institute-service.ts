@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { ApplicationState } from "@prisma/client";
+import { Prisma, ApplicationState } from "@prisma/client";
 import {
   calculateStudentReadiness,
   aggregateInstitutionFunnel,
@@ -156,7 +156,17 @@ async function getRawStudentMetricsForInstitute(instituteId: string) {
     },
   });
 
-  return students.map((s) => {
+type StudentWithMetricsPayload = Prisma.UserGetPayload<{
+  include: {
+    profile: true;
+    resumes: { select: { id: true } };
+    atsScans: { select: { overallScore: true } };
+    interviews: { select: { overallScore: true } };
+    applications: { select: { status: true } };
+  };
+}>;
+
+  return students.map((s: StudentWithMetricsPayload) => {
     const resumesCount = s.resumes.length;
     const atsScansCount = s.atsScans.length;
     const avgAtsScore =
