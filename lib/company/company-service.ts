@@ -33,12 +33,12 @@ export interface UpdateCompanyJobInput extends Partial<CreateCompanyJobInput> {
  * Valid Status Transitions Matrix
  */
 const VALID_TRANSITIONS: Record<string, string[]> = {
-  APPLIED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.REJECTED],
-  UNDER_REVIEW: [ApplicationState.SHORTLISTED, ApplicationState.REJECTED],
-  SHORTLISTED: [ApplicationState.INTERVIEW, ApplicationState.REJECTED],
+  APPLIED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.REJECTED],
+  UNDER_REVIEW: [ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW, ApplicationState.REJECTED],
+  SHORTLISTED: [ApplicationState.INTERVIEW, ApplicationState.OFFERED, ApplicationState.REJECTED],
   INTERVIEW: [ApplicationState.OFFERED, ApplicationState.REJECTED],
   OFFERED: [ApplicationState.REJECTED],
-  REJECTED: [],
+  REJECTED: [ApplicationState.UNDER_REVIEW, ApplicationState.SHORTLISTED, ApplicationState.INTERVIEW],
   WITHDRAWN: [],
 };
 
