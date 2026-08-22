@@ -106,14 +106,14 @@ function cleanSingleLine(str: string): string {
 }
 
 /**
- * Reject string if it is a critique note instead of a resume rewrite
+ * Reject string if it is a critique note, advice sentence, or prompt echo instead of a resume rewrite
  */
 function isCritiqueNote(str: string): boolean {
-  if (!str || str.length < 10) return true;
+  if (!str || str.length < 15) return true;
   const s = str.trim();
   return (
-    /^(Words \(subjective|It lacks|Weaknesses|Strengths|Critique|Analysis:|Goal:|Note:|Constraint|Role:|Can sometimes|Undersell|Critique:)/i.test(s) ||
-    /\b(undersell|framing|subjective|critique|weakness|lacks|advice|not framed as|can sometimes)\b/i.test(s)
+    /^(Words \(subjective|It lacks|Weaknesses|Strengths|Critique|Analysis:|Goal:|Note:|Constraint|Role:|Can sometimes|Undersell|Critique:|Give me|Give a|Make it|Replacing vague|Helps ATS|Advice:)/i.test(s) ||
+    /\b(undersell|framing|subjective|critique|weakness|lacks|advice|not framed as|can sometimes|give me a|give a proper|replacing vague|helps ats)\b/i.test(s)
   );
 }
 
@@ -214,10 +214,18 @@ function extractCleanBulletsFromAiText(
       const advice = parsed.analysis || parsed.advice;
 
       if (enhanced && typeof enhanced === "string" && !isCritiqueNote(enhanced)) {
+        const alt =
+          alternative && typeof alternative === "string" && !isCritiqueNote(alternative)
+            ? cleanSingleLine(alternative)
+            : generateFallbackEnhancement(originalText, sectionContext, "enhance").alternativeText;
+
         return {
           enhancedText: cleanSingleLine(enhanced),
-          alternativeText: alternative && !isCritiqueNote(alternative) ? cleanSingleLine(alternative) : cleanSingleLine(enhanced),
-          analysis: advice && !advice.includes("[1-sentence") ? cleanSingleLine(advice) : `Adding specific technical metrics and specializations strengthens your ${sectionContext}.`,
+          alternativeText: alt,
+          analysis:
+            advice && !advice.includes("[1-sentence")
+              ? cleanSingleLine(advice)
+              : `Adding specific technical metrics and specializations strengthens your ${sectionContext}.`,
         };
       }
     }
@@ -323,18 +331,19 @@ export async function enhanceResumeText({
 
   const systemPrompt = `You are a world-class ATS Resume Coach & Hiring Manager.
 Target Resume Section: "${sectionName}"
-Selected Text to Rewrite: "${cleanText}"
-Goal: ${modeInstruction}
+Selected Candidate Resume Text: "${cleanText}"
+Candidate's Enhancement Request: "${cleanInstruction || modeInstruction}"
 
-INSTRUCTIONS:
-1. Provide two realistic, high-impact replacement options for the candidate.
-2. Do NOT output critique commentary, weakness lists, or placeholder tokens like "[Number]" or "[X]". Use realistic numbers if quantifying (e.g. "3+ years", "35% latency reduction").
-3. Respond ONLY with a valid JSON object matching this exact schema:
+CRITICAL INSTRUCTIONS:
+1. You MUST generate TWO full, publication-grade, professional resume rewrites/summaries for the candidate to put on their resume.
+2. Do NOT echo or repeat the user request in enhancedText or alternativeText (e.g. NEVER return "Give me a proper summary" or "Give me a summary").
+3. Do NOT put recruiter advice or critique inside enhancedText or alternativeText. Place advice strictly in the "analysis" field.
+4. Respond ONLY with a valid JSON object matching this exact schema:
 
 {
-  "analysis": "A warm 1-sentence recruiter advice on why this rewrite boosts candidate ATS score in ${sectionName}.",
-  "enhancedText": "First top recommended replacement rewrite.",
-  "alternativeText": "Second alternative concise replacement rewrite."
+  "analysis": "1-sentence recruiter advice on why this rewrite boosts ATS score.",
+  "enhancedText": "Full, publication-grade, professional resume rewrite option 1.",
+  "alternativeText": "Full, publication-grade, professional resume rewrite option 2."
 }`;
 
   // Discover supported models from Google API
