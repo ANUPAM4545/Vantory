@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Send, AlertCircle, Building2 } from "lucide-react";
 import { useBodyScrollLock } from "@/lib/hooks/useBodyScrollLock";
 
@@ -12,6 +13,12 @@ export interface CreateJobModalProps {
 
 export function CreateJobModal({ isOpen, onClose, onJobCreated }: CreateJobModalProps) {
   useBodyScrollLock(isOpen);
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -131,9 +138,11 @@ export function CreateJobModal({ isOpen, onClose, onJobCreated }: CreateJobModal
     }
   };
 
-  return (
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] bg-neutral-950/85 backdrop-blur-sm overflow-y-auto selection:bg-neutral-900 selection:text-white custom-scrollbar"
+      className="fixed inset-0 z-[99999] bg-neutral-950/85 backdrop-blur-sm overflow-y-auto selection:bg-neutral-900 selection:text-white custom-scrollbar"
       data-lenis-prevent="true"
       data-lenis-prevent-wheel="true"
       data-lenis-prevent-touch="true"
@@ -408,6 +417,7 @@ export function CreateJobModal({ isOpen, onClose, onJobCreated }: CreateJobModal
         </form>
       </div>
     </div>
-  </div>
-  );
+  </div>,
+  document.body
+);
 }

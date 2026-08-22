@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Save, RefreshCw, AlertCircle, Building2, CheckCircle2 } from "lucide-react";
 import { useBodyScrollLock } from "@/lib/hooks/useBodyScrollLock";
 
@@ -13,6 +14,12 @@ export interface EditJobModalProps {
 
 export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobModalProps) {
   useBodyScrollLock(isOpen);
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -169,9 +176,11 @@ export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobMo
     }
   };
 
-  return (
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 overflow-y-auto selection:bg-neutral-900 selection:text-white"
+      className="fixed inset-0 z-[99999] bg-neutral-950/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto selection:bg-neutral-900 selection:text-white"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -474,6 +483,7 @@ export function EditJobModal({ jobId, isOpen, onClose, onJobUpdated }: EditJobMo
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

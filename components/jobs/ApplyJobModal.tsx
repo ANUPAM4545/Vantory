@@ -131,7 +131,7 @@ export function ApplyJobModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-neutral-950/85 backdrop-blur-sm overflow-y-auto selection:bg-neutral-900 selection:text-white custom-scrollbar"
+      className="fixed inset-0 z-[9999] bg-neutral-950/85 backdrop-blur-sm overflow-y-auto selection:bg-neutral-900 selection:text-white custom-scrollbar"
       data-lenis-prevent="true"
       data-lenis-prevent-wheel="true"
       data-lenis-prevent-touch="true"

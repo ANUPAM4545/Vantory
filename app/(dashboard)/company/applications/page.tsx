@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import {
   Users,
   Search,
@@ -63,7 +64,12 @@ export default function CompanyApplicationsPage() {
   // Full Screen Resume Preview Modal State
   const [activeResumePreviewData, setActiveResumePreviewData] = useState<ResumeData | null>(null);
   const [activeResumeId, setActiveResumeId] = useState<string | null>(null);
-  const [zoomLevel, setZoomLevel] = useState<number>(1);
+  const [zoomLevel, setZoomLevel] = useState<number>(1.0);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Lock background body scroll when any modal is open
   useBodyScrollLock(Boolean(selectedApplication || activeResumePreviewData));
@@ -419,15 +425,16 @@ export default function CompanyApplicationsPage() {
       )}
 
       {/* REVIEW CANDIDATE APPLICATION MODAL */}
-      {selectedApplication && (() => {
-        const parsedData = parseResumeData(selectedApplication);
-        return (
-          <div
-            className="fixed inset-0 z-50 bg-neutral-950/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 selection:bg-neutral-900 selection:text-white"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setSelectedApplication(null);
-            }}
-          >
+      {selectedApplication && mounted && createPortal(
+        (() => {
+          const parsedData = parseResumeData(selectedApplication);
+          return (
+            <div
+              className="fixed inset-0 z-[99999] bg-neutral-950/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 selection:bg-neutral-900 selection:text-white"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) setSelectedApplication(null);
+              }}
+            >
             {/* Bounded Fixed Viewport Modal Card */}
             <div className="relative w-full max-w-3xl bg-white border border-neutral-200 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-neutral-950 font-sans flex flex-col max-h-[85vh] overflow-hidden">
               {/* Modal Fixed Top Header */}
@@ -656,12 +663,14 @@ export default function CompanyApplicationsPage() {
             </div>
           </div>
         );
-      })()}
+      })(),
+      document.body
+      )}
 
       {/* FULL SCREEN A4 RESUME PREVIEW MODAL */}
-      {activeResumePreviewData && (
+      {activeResumePreviewData && mounted && createPortal(
         <div
-          className="fixed inset-0 z-[100] bg-neutral-950 overflow-y-auto flex flex-col items-center selection:bg-neutral-900 selection:text-white custom-scrollbar"
+          className="fixed inset-0 z-[99999] bg-neutral-950 overflow-y-auto flex flex-col items-center selection:bg-neutral-900 selection:text-white custom-scrollbar"
           data-lenis-prevent="true"
           data-lenis-prevent-wheel="true"
           data-lenis-prevent-touch="true"
@@ -751,7 +760,8 @@ export default function CompanyApplicationsPage() {
               <ResumePreview data={activeResumePreviewData} />
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

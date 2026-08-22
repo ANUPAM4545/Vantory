@@ -36,7 +36,7 @@ export function ContactSupportModal({ isOpen, onClose }: ContactSupportModalProp
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs overflow-y-auto p-4 sm:p-6 selection:bg-neutral-900 selection:text-white custom-scrollbar"
+          className="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-xs overflow-y-auto p-4 sm:p-6 selection:bg-neutral-900 selection:text-white custom-scrollbar"
           data-lenis-prevent="true"
           data-lenis-prevent-wheel="true"
           data-lenis-prevent-touch="true"
