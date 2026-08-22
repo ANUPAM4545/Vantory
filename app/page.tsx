@@ -150,6 +150,8 @@ export default function Home() {
     setActiveMagicId(id);
   };
 
+  const [selectedRoleFilter, setSelectedRoleFilter] = useState<"ALL" | "CANDIDATE" | "COMPANY" | "INSTITUTE">("ALL");
+
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
@@ -996,170 +998,274 @@ export default function Home() {
       </section>
 
       {/* SECTION 1: ROLE CAPABILITIES & ACCOUNT REGISTRATION */}
-      <section id="portals" className="py-36 sm:py-48 bg-white border-t border-neutral-200/80 px-6">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <section id="portals" className="py-36 sm:py-48 bg-white border-t border-neutral-200/80 px-6 relative overflow-hidden">
+        {/* Ambient Subtle Background Grid Accent */}
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto space-y-12 relative z-10">
           {/* Section 1 Header */}
-          <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 font-bold block">
-              ENTERPRISE ECOSYSTEM MATRIX
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-950 tracking-tight">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-4 max-w-2xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono font-extrabold uppercase tracking-widest text-neutral-600 shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>ENTERPRISE ECOSYSTEM MATRIX v2.0</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
               Comprehensive Role Capabilities
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-500 font-normal">
+            <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
               Evaluate role-based workflows, recruitment pipelines, and security standards available across candidate, employer, and institutional workspaces.
             </p>
-          </div>
+
+            {/* Interactive Workspace Role Filter Pills */}
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
+              {[
+                { id: "ALL", label: "✨ All Workspaces" },
+                { id: "CANDIDATE", label: "💼 Job Seekers" },
+                { id: "COMPANY", label: "🏢 Employers" },
+                { id: "INSTITUTE", label: "🎓 Academic Partners" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setSelectedRoleFilter(tab.id as "ALL" | "CANDIDATE" | "COMPANY" | "INSTITUTE")}
+                  className={`relative px-4 py-2 rounded-full text-xs font-mono font-bold transition-all cursor-pointer ${
+                    selectedRoleFilter === tab.id
+                      ? "text-white bg-neutral-950 shadow-md"
+                      : "text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-950"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Industrial Role Header Cards Grid - Directly Routing to Signup with Pre-Selected Role */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, staggerChildren: 0.15 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
+          >
             {/* Candidate Card */}
-            <div className="bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-md space-y-6 flex flex-col justify-between hover:border-neutral-400 hover:shadow-xl transition-all group">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-sm group-hover:scale-105 transition-transform">
-                    <FileText className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="px-3 py-1 bg-neutral-100 text-neutral-950 rounded-full font-mono text-[10px] font-extrabold border border-neutral-200 tracking-wider">
-                    JOB SEEKER SUITE
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-neutral-950">Candidate Workspace</h3>
-                  <p className="text-xs text-neutral-500 font-normal mt-1 leading-relaxed">
-                    Full access to LaTeX Resume Builder, AI Mock Interviews, ATS Keyword Scanner, and 1-Click Applications.
-                  </p>
-                </div>
-
-                {/* Feature Checklist */}
-                <div className="space-y-2 pt-2 border-t border-neutral-100 text-xs font-mono text-neutral-700">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>LaTeX Resume & 300 DPI PDF Export</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Real-time Deterministic ATS Scanner</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>AI Voice Mock Interview Simulator</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>1-Click Verified Job Applications</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/register?role=candidate"
-                className="w-full py-3.5 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
+            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "CANDIDATE") && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ duration: 0.25 }}
+                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-neutral-950 hover:shadow-2xl transition-all group overflow-hidden"
               >
-                <span>Register Candidate Account</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-            </div>
+                {/* Top Accent Gradient Bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neutral-950 via-emerald-500 to-neutral-950 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-14 h-14 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <FileText className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="px-3 py-1 bg-neutral-100 text-neutral-950 rounded-full font-mono text-[10px] font-extrabold border border-neutral-200 tracking-wider">
+                      JOB SEEKER SUITE
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-extrabold text-neutral-950 tracking-tight">Candidate Workspace</h3>
+                    <p className="text-xs text-neutral-500 font-normal mt-1.5 leading-relaxed">
+                      Full access to LaTeX Resume Builder, AI Mock Interviews, ATS Keyword Scanner, and 1-Click Applications.
+                    </p>
+                  </div>
+
+                  {/* Feature Checklist */}
+                  <div className="space-y-2.5 pt-3 border-t border-neutral-100 text-xs font-mono text-neutral-700">
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>LaTeX Resume & 300 DPI PDF Export</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Real-time Deterministic ATS Scanner</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>AI Voice Mock Interview Simulator</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>1-Click Verified Job Applications</span>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/register?role=candidate"
+                  className="w-full py-4 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2.5 shadow-lg cursor-pointer group-hover:shadow-xl"
+                >
+                  <span>Register Candidate Account</span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            )}
 
             {/* Employer Card */}
-            <div className="bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-md space-y-6 flex flex-col justify-between hover:border-neutral-400 hover:shadow-xl transition-all group">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-sm group-hover:scale-105 transition-transform">
-                    <Building2 className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-700 rounded-full font-mono text-[10px] font-extrabold border border-emerald-500/20 tracking-wider">
-                    VERIFIED EMPLOYER
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-neutral-950">Employer Control Plane</h3>
-                  <p className="text-xs text-neutral-500 font-normal mt-1 leading-relaxed">
-                    Corporate opening creation, Indian Rupee (₹) salary ranges, candidate application review & status escalation.
-                  </p>
-                </div>
-
-                {/* Feature Checklist */}
-                <div className="space-y-2 pt-2 border-t border-neutral-100 text-xs font-mono text-neutral-700">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Verified Corporate Company Profile</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Custom Openings & ₹ Salary Ranges</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>LaTeX Resume & Full-Screen Viewer</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>5-Stage Application Pipeline Escalation</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/register?role=company"
-                className="w-full py-3.5 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
+            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "COMPANY") && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ duration: 0.25 }}
+                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-emerald-600 hover:shadow-2xl transition-all group overflow-hidden"
               >
-                <span>Register Corporate Account</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-            </div>
+                {/* Top Accent Gradient Bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-neutral-950 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-14 h-14 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-md group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
+                      <Building2 className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="px-3 py-1 bg-emerald-500/10 text-emerald-700 rounded-full font-mono text-[10px] font-extrabold border border-emerald-500/20 tracking-wider">
+                      VERIFIED EMPLOYER
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-extrabold text-neutral-950 tracking-tight">Employer Control Plane</h3>
+                    <p className="text-xs text-neutral-500 font-normal mt-1.5 leading-relaxed">
+                      Corporate opening creation, Indian Rupee (₹) salary ranges, candidate application review & status escalation.
+                    </p>
+                  </div>
+
+                  {/* Feature Checklist */}
+                  <div className="space-y-2.5 pt-3 border-t border-neutral-100 text-xs font-mono text-neutral-700">
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Verified Corporate Company Profile</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Custom Openings & ₹ Salary Ranges</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>LaTeX Resume & Full-Screen Viewer</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>6-Stage Application Pipeline Escalation</span>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/register?role=company"
+                  className="w-full py-4 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2.5 shadow-lg cursor-pointer group-hover:shadow-xl"
+                >
+                  <span>Register Corporate Account</span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            )}
 
             {/* Institute Card */}
-            <div className="bg-white border border-neutral-200/90 rounded-3xl p-7 shadow-md space-y-6 flex flex-col justify-between hover:border-neutral-400 hover:shadow-xl transition-all group">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-sm group-hover:scale-105 transition-transform">
-                    <GraduationCap className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-700 rounded-full font-mono text-[10px] font-extrabold border border-blue-500/20 tracking-wider">
-                    ACADEMIC PARTNER
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-extrabold text-neutral-950">Institute Portal</h3>
-                  <p className="text-xs text-neutral-500 font-normal mt-1 leading-relaxed">
-                    Student batch onboarding, placement readiness analytics, QR code verification badges, and campus drive sync.
-                  </p>
-                </div>
-
-                {/* Feature Checklist */}
-                <div className="space-y-2 pt-2 border-t border-neutral-100 text-xs font-mono text-neutral-700">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Student Roster & QR Verification Badges</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Batch Placement Readiness Analytics</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Campus Placement Drive Sync</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span>Enterprise Audit Log & Security Stream</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/register?role=institute"
-                className="w-full py-3.5 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
+            {(selectedRoleFilter === "ALL" || selectedRoleFilter === "INSTITUTE") && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ duration: 0.25 }}
+                className="relative bg-white border border-neutral-200/90 rounded-3xl p-8 shadow-lg space-y-6 flex flex-col justify-between hover:border-blue-600 hover:shadow-2xl transition-all group overflow-hidden"
               >
-                <span>Register Institute Account</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
+                {/* Top Accent Gradient Bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-neutral-950 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-14 h-14 rounded-2xl bg-neutral-950 text-white flex items-center justify-center font-extrabold shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <GraduationCap className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="px-3 py-1 bg-blue-500/10 text-blue-700 rounded-full font-mono text-[10px] font-extrabold border border-blue-500/20 tracking-wider">
+                      ACADEMIC PARTNER
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-extrabold text-neutral-950 tracking-tight">Institute Portal</h3>
+                    <p className="text-xs text-neutral-500 font-normal mt-1.5 leading-relaxed">
+                      Student batch onboarding, placement readiness analytics, QR code verification badges, and campus drive sync.
+                    </p>
+                  </div>
+
+                  {/* Feature Checklist */}
+                  <div className="space-y-2.5 pt-3 border-t border-neutral-100 text-xs font-mono text-neutral-700">
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Student Roster & QR Verification Badges</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Batch Placement Readiness Analytics</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Campus Placement Drive Sync</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Enterprise Audit Log & Security Stream</span>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/register?role=institute"
+                  className="w-full py-4 bg-neutral-950 text-white font-extrabold text-xs rounded-full hover:bg-neutral-800 transition-all text-center flex items-center justify-center gap-2.5 shadow-lg cursor-pointer group-hover:shadow-xl"
+                >
+                  <span>Register Institute Account</span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            )}
+          </motion.div>
+
+          {/* Interactive Enterprise Capabilities Trust Ticker Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="pt-8 border-t border-neutral-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
+          >
+            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
+              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">10,000+</span>
+              <span className="text-[11px] font-mono text-neutral-500 block">LaTeX Vector Resumes</span>
             </div>
-          </div>
+            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
+              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">98.4%</span>
+              <span className="text-[11px] font-mono text-neutral-500 block">ATS Match Accuracy</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
+              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">500+</span>
+              <span className="text-[11px] font-mono text-neutral-500 block">Verified Openings</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-1 hover:border-neutral-400 transition-all">
+              <span className="text-xl font-extrabold text-neutral-950 tracking-tight font-mono">100%</span>
+              <span className="text-[11px] font-mono text-neutral-500 block">Prompt-Guard Secured</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
