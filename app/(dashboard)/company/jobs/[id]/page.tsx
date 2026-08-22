@@ -167,7 +167,7 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
     <div className="min-h-screen bg-white text-neutral-950 font-sans p-6 md:p-10 space-y-8 selection:bg-neutral-950 selection:text-white relative">
       {/* TOP-UP SUCCESS BANNER */}
       {topBannerMsg && (
-        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 max-w-xl w-[90%] bg-neutral-950 text-white p-4 rounded-2xl shadow-2xl border border-neutral-800 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 max-w-xl w-[90%] bg-neutral-950 text-white p-4 rounded-2xl shadow-2xl border border-neutral-800 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-top-4 duration-300">
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
               <Sparkles className="w-4.5 h-4.5" />
