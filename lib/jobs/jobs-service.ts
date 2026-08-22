@@ -158,38 +158,29 @@ export async function getFilteredJobs(params: JobFilterParams, userId?: string) 
 }
 
 export async function getJobById(id: string, userId?: string) {
-  await ensureSeedJobsExist();
-
-  const job = await db.jobPosting.findUnique({
-    where: { id },
-  });
+  const [job, savedRecord, appRecord] = await Promise.all([
+    db.jobPosting.findUnique({
+      where: { id },
+    }),
+    userId
+      ? db.savedJob.findUnique({
+          where: { userId_jobId: { userId, jobId: id } },
+        })
+      : null,
+    userId
+      ? db.jobApplication.findUnique({
+          where: { userId_jobId: { userId, jobId: id } },
+        })
+      : null,
+  ]);
 
   if (!job) return null;
 
-  let isSaved = false;
-  let hasApplied = false;
-  let existingApplicationId: string | null = null;
-
-  if (userId) {
-    const [savedRecord, appRecord] = await Promise.all([
-      db.savedJob.findUnique({
-        where: { userId_jobId: { userId, jobId: id } },
-      }),
-      db.jobApplication.findUnique({
-        where: { userId_jobId: { userId, jobId: id } },
-      }),
-    ]);
-
-    isSaved = Boolean(savedRecord);
-    hasApplied = Boolean(appRecord);
-    existingApplicationId = appRecord?.id || null;
-  }
-
   return {
     ...job,
-    isSaved,
-    hasApplied,
-    existingApplicationId,
+    isSaved: Boolean(savedRecord),
+    hasApplied: Boolean(appRecord),
+    existingApplicationId: appRecord?.id || null,
   };
 }
 

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getSession } from "./session";
 import { db } from "@/lib/db";
 
@@ -17,8 +18,9 @@ export interface SafeUser {
 
 /**
  * Returns the currently authenticated user with initialized profile metrics, or null.
+ * Wrapped in React.cache() to deduplicate queries within the same request lifecycle.
  */
-export async function getCurrentUser(): Promise<SafeUser | null> {
+export const getCurrentUser = cache(async (): Promise<SafeUser | null> => {
   try {
     const session = await getSession();
     if (!session) return null;
@@ -46,7 +48,7 @@ export async function getCurrentUser(): Promise<SafeUser | null> {
   } catch {
     return null;
   }
-}
+});
 
 /**
  * Ensures user is authenticated; throws Error or redirects if unauthenticated.
