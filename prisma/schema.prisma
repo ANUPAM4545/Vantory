@@ -1,0 +1,290 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CANDIDATE
+  COMPANY_ADMIN
+  INSTITUTE_ADMIN
+  INSTITUTE_STUDENT
+  SUPER_ADMIN
+}
+
+enum ApplicationState {
+  APPLIED
+  UNDER_REVIEW
+  SHORTLISTED
+  INTERVIEW
+  OFFERED
+  REJECTED
+  WITHDRAWN
+}
+
+enum InterviewType {
+  TECHNICAL
+  BEHAVIORAL
+  HR
+  SYSTEM_DESIGN
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  passwordHash   String
+  name           String
+  role           Role            @default(CANDIDATE)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  instituteId    String?
+  institute      Institute?      @relation(fields: [instituteId], references: [id])
+
+  profile        Profile?
+  companyProfile CompanyProfile?
+
+  resumes        Resume[]
+  atsScans       AtsScan[]
+  interviews     InterviewSession[]
+  applications   JobApplication[]
+  savedJobs      SavedJob[]
+  activities     ActivityLog[]
+  postedJobs     JobPosting[]       @relation("CompanyJobPostings")
+}
+
+model Institute {
+  id                 String   @id @default(uuid())
+  name               String
+  logo               String?
+  website            String?
+  description        String?
+  location           String?  @default("Main Campus")
+  contactEmail       String?
+  contactPhone       String?
+  domain             String?
+  establishedYear    Int?     @default(2010)
+  verificationStatus String   @default("VERIFIED")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  users              User[]
+}
+
+model CompanyProfile {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyName        String
+  logo               String?
+  website            String?
+  description        String?
+  industry           String?  @default("Software & Technology")
+  location           String?  @default("Remote")
+  establishedYear    Int?     @default(2024)
+  companySize        String?  @default("11-50 Employees")
+  isOnboarded        Boolean  @default(false)
+  verificationStatus String   @default("VERIFIED")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Profile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  headline        String?
+  bio             String?
+  phone           String?
+  location        String?
+  avatarUrl       String?
+  githubUrl       String?
+  linkedinUrl     String?
+  portfolioUrl    String?
+  skills          String?
+  experienceYears Int?     @default(0)
+  education       String?
+  department      String?  @default("Computer Science")
+  course          String?  @default("B.Tech")
+  graduationYear  Int?     @default(2027)
+  studentId       String?
+  placementStatus String?  @default("LOOKING")
+  completionScore Int      @default(20)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+}
+
+model Resume {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String   @default("Untitled Resume")
+  templateId   String   @default("classic-monochrome")
+  contentJson  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  atsScans     AtsScan[]
+  applications JobApplication[]
+  interviews   InterviewSession[]
+}
+
+model AtsScan {
+  id                   String   @id @default(uuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeId             String?
+  resume               Resume?  @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  targetJobTitle       String
+  companyName          String?
+  jobDescription       String
+  overallScore         Int
+  resumeQualityScore   Int      @default(0)
+  confidenceScore      Int      @default(0)
+  confidenceLevel      String   @default("HIGH")
+  keywordMatch         Int
+  skillsMatch          Int
+  experienceMatch      Int
+  educationMatch       Int
+  formattingScore      Int
+  scoringEngineVersion String   @default("1.0.0")
+  taxonomyVersion      String   @default("2026.1")
+  analysisStatus       String   @default("COMPLETED")
+  reportSnapshotJson   String   @default("{}")
+  resumeSnapshotJson   String   @default("{}")
+  feedbackJson         String
+  createdAt            DateTime @default(now())
+}
+
+model InterviewSession {
+  id                   String                 @id @default(uuid())
+  userId               String
+  user                 User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeId             String?
+  resume               Resume?                @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  jobId                String?
+  job                  JobPosting?            @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  targetJobTitle       String
+  jobRole              String                 @default("")
+  companyName          String?
+  jobDescription       String
+  interviewType        String                 @default("FULL")
+  difficulty           String                 @default("Medium")
+  interviewerStyle     String                 @default("Professional")
+  durationMinutes      Int                    @default(20)
+  status               String                 @default("CREATED")
+  currentDifficulty    String                 @default("Medium")
+  currentQuestionIndex Int                    @default(0)
+  overallScore         Int?
+  technicalScore       Int?
+  communicationScore   Int?
+  roleAlignmentScore   Int?
+  projectKnowledgeScore Int?
+  behavioralScore      Int?
+  readinessScore       Int?
+  readinessLevel       String?
+  sessionStateJson     String                 @default("{}")
+  reportSnapshotJson   String?
+  prepPlanJson         String?
+  questions            MockInterviewQuestion[]
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+}
+
+model MockInterviewQuestion {
+  id                  String           @id @default(uuid())
+  sessionId           String
+  session             InterviewSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionIndex       Int
+  category            String
+  questionText        String
+  candidateAnswerText String?
+  audioDurationSeconds Int?
+  evaluationJson      String?
+  followUpParentId    String?
+  isFollowUp          Boolean          @default(false)
+  credibilityConcern  Boolean          @default(false)
+  credibilityReason   String?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+}
+
+model JobPosting {
+  id                    String           @id @default(uuid())
+  title                 String
+  company               String
+  companyLogo           String?
+  companyUrl            String?
+  companyUserId         String?
+  companyUser           User?            @relation("CompanyJobPostings", fields: [companyUserId], references: [id], onDelete: SetNull)
+  location              String
+  workMode              String           @default("Remote")
+  type                  String           @default("Full-time")
+  experienceMin         Int              @default(0)
+  experienceMax         Int              @default(2)
+  experience            String           @default("0-2 Years")
+  salaryMin             Int?
+  salaryMax             Int?
+  salaryPeriod          String?          @default("month")
+  salary                String?
+  description           String
+  aboutCompany          String?
+  responsibilities      String?
+  requirements          String
+  preferredRequirements String?
+  skills                String           @default("")
+  tags                  String           @default("")
+  status                String           @default("ACTIVE")
+  verificationStatus    String           @default("VERIFIED")
+  hiringContact         String?
+  postedAt              DateTime         @default(now())
+  expiresAt             DateTime?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+
+  applications          JobApplication[]
+  savedBy               SavedJob[]
+  interviews            InterviewSession[]
+}
+
+model SavedJob {
+  id        String     @id @default(uuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobId     String
+  job       JobPosting @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@unique([userId, jobId])
+}
+
+model JobApplication {
+  id           String           @id @default(uuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobId        String
+  job          JobPosting       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  resumeId     String?
+  resume       Resume?          @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  coverNote    String?
+  status       ApplicationState @default(APPLIED)
+  timelineJson String           @default("[]")
+  notes        String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@unique([userId, jobId])
+}
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  title     String
+  detail    String?
+  createdAt DateTime @default(now())
+}
