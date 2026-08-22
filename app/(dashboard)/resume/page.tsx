@@ -22,7 +22,8 @@ export default function ResumeBuilderPage() {
         }
 
         if (json.resumes && json.resumes.length > 0) {
-          setResumeData(json.resumes[0].data);
+          const r = json.resumes[0];
+          setResumeData(r.data || emptyResumeData);
         } else {
           setResumeData(emptyResumeData);
         }

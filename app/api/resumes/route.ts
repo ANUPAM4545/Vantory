@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/authorization";
 import { getCandidateResumes, saveCandidateResume } from "@/lib/resume/resume-service";
+import { parseResumeContent } from "@/lib/resume/serialization";
 
 export async function GET() {
   try {
@@ -9,7 +10,12 @@ export async function GET() {
       return NextResponse.json({ success: false, error: "Unauthenticated" }, { status: 401 });
     }
 
-    const resumes = await getCandidateResumes(user.id);
+    const rawResumes = await getCandidateResumes(user.id);
+    const resumes = rawResumes.map((r) => ({
+      ...r,
+      data: parseResumeContent(r.contentJson),
+    }));
+
     return NextResponse.json({ success: true, resumes });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Failed to load resumes.";

@@ -9,12 +9,19 @@ export function parseResumeContent(jsonString: string | null | undefined): Resum
   try {
     const parsed = JSON.parse(jsonString);
     return {
-      ...emptyResumeData,
-      ...parsed,
+      title: parsed.title || "Candidate Resume",
       personalInfo: {
-        ...emptyResumeData.personalInfo,
-        ...(parsed.personalInfo || {}),
+        fullName: parsed.personalInfo?.fullName ?? "",
+        headline: parsed.personalInfo?.headline ?? "Software Engineer",
+        email: parsed.personalInfo?.email ?? "",
+        phone: parsed.personalInfo?.phone ?? "",
+        location: parsed.personalInfo?.location ?? "",
+        linkedin: parsed.personalInfo?.linkedin ?? "",
+        github: parsed.personalInfo?.github ?? "",
+        portfolio: parsed.personalInfo?.portfolio ?? "",
+        leetcode: parsed.personalInfo?.leetcode ?? "",
       },
+      summary: parsed.summary ?? "",
       settings: {
         ...defaultResumeSettings,
         ...(parsed.settings || {}),
