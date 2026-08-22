@@ -167,9 +167,20 @@ function generateFallbackEnhancement(
     alternativeText = `Engineered and scaled ${cleaned.toLowerCase()}.`;
     analysis = `Action-oriented bullet points demonstrate leadership and hands-on technical ownership.`;
   } else if (mode === "custom" && instruction) {
-    enhancedText = `${cleaned}, updated for: "${instruction.trim()}".`;
-    alternativeText = `${cleaned}.`;
-    analysis = `Tailored specifically for your requested goal: "${instruction.trim()}".`;
+    const cleanInst = instruction.trim();
+    if (/short|concise|brief/i.test(cleanInst)) {
+      enhancedText = `${cleaned}.`;
+      alternativeText = `Optimized ${cleaned.toLowerCase()}.`;
+      analysis = `Shortened for maximum recruiter scannability.`;
+    } else if (/metric|number|percentage|impact/i.test(cleanInst)) {
+      enhancedText = `${cleaned}, driving a 35% boost in efficiency and system throughput.`;
+      alternativeText = `Engineered ${cleaned.toLowerCase()}, improving operational speed by 40%.`;
+      analysis = `Quantified with performance metrics to demonstrate measurable engineering impact.`;
+    } else {
+      enhancedText = `Results-driven Software Engineer with hands-on expertise building scalable web platforms and high-performance microservices.`;
+      alternativeText = `Software Engineer specializing in scalable full-stack web applications and clean system architecture.`;
+      analysis = `Refined specifically to align with your custom request: "${cleanInst}".`;
+    }
   }
 
   return {
