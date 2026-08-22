@@ -156,25 +156,24 @@ async function getRawStudentMetricsForInstitute(instituteId: string) {
     },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return students.map((s: any) => {
+  return students.map((s) => {
     const resumesCount = s.resumes.length;
     const atsScansCount = s.atsScans.length;
     const avgAtsScore =
       atsScansCount > 0
         ? Math.round(
-            s.atsScans.reduce((sum: number, scan: { overallScore: number }) => sum + scan.overallScore, 0) /
+            s.atsScans.reduce((sum, scan) => sum + scan.overallScore, 0) /
               atsScansCount
           )
         : 0;
 
     const interviewsCount = s.interviews.length;
-    const validInterviews = s.interviews.filter((i: { overallScore: number | null }) => i.overallScore != null);
+    const validInterviews = s.interviews.filter((i) => i.overallScore != null);
     const avgInterviewScore =
       validInterviews.length > 0
         ? Math.round(
             validInterviews.reduce(
-              (sum: number, i: { overallScore: number | null }) => sum + (i.overallScore || 0),
+              (sum, i) => sum + (i.overallScore || 0),
               0
             ) / validInterviews.length
           )
@@ -433,11 +432,11 @@ export async function getInstituteStudentDetail(
         )
       : 0;
 
-  const validInterviews = student.interviews.filter((i: { overallScore: number | null }) => i.overallScore != null);
+  const validInterviews = student.interviews.filter((i) => i.overallScore != null);
   const avgInterviewScore =
     validInterviews.length > 0
       ? Math.round(
-          validInterviews.reduce((sum: number, i: { overallScore: number | null }) => sum + (i.overallScore || 0), 0) /
+          validInterviews.reduce((sum, i) => sum + (i.overallScore || 0), 0) /
             validInterviews.length
         )
       : 0;
@@ -499,7 +498,7 @@ export async function getInstituteStudentDetail(
       overallScore: s.overallScore,
       createdAt: s.createdAt.toISOString(),
     })),
-    interviews: student.interviews.map((i: { id: string; targetJobTitle: string; interviewType: string; overallScore: number | null; status: string; createdAt: Date }) => ({
+    interviews: student.interviews.map((i) => ({
       id: i.id,
       jobRole: i.targetJobTitle,
       type: i.interviewType,
