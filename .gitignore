@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js Build Output
+.next/
+out/
+build/
+dist/
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+
+# Environment Variables & Credentials
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+
+# Local SQLite Database & Storage
+prisma/*.db
+prisma/*.db-journal
+*.sqlite
+*.sqlite-journal
+
+# Temporary & Scratch Files
+scratch/
+tmp/
+temp/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript & Next.js Generated Types
+*.tsbuildinfo
+next-env.d.ts
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
