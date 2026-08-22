@@ -1,0 +1,209 @@
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import { PlusCircle, Briefcase, RefreshCw, Eye, Pencil } from "lucide-react";
+import { CreateJobModal } from "@/components/company/CreateJobModal";
+import { EditJobModal } from "@/components/company/EditJobModal";
+
+interface CompanyJobItem {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  workMode: string;
+  type: string;
+  experience: string;
+  salary?: string;
+  status: string;
+  postedAt: string;
+  applicationsCount: number;
+}
+
+export default function CompanyJobsPage() {
+  const [jobs, setJobs] = useState<CompanyJobItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isCreateJobOpen, setIsCreateJobOpen] = useState<boolean>(false);
+  const [editingJobId, setEditingJobId] = useState<string | null>(null);
+
+  const loadJobs = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/company/jobs");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.jobs)) {
+          setJobs(json.jobs);
+        }
+      }
+    } catch {
+      // Handle silently
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadJobs();
+    window.addEventListener("job-created", loadJobs);
+    return () => {
+      window.removeEventListener("job-created", loadJobs);
+    };
+  }, [loadJobs]);
+
+  const handleToggleJobStatus = async (jobId: string, currentStatus: string) => {
+    const nextStatus = currentStatus === "ACTIVE" ? "CLOSED" : "ACTIVE";
+    try {
+      const res = await fetch(`/api/company/jobs/${jobId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: nextStatus }),
+      });
+      if (res.ok) {
+        loadJobs();
+      }
+    } catch {
+      // Handle silently
+    }
+  };
+
+  return (
+    <div className="space-y-6 selection:bg-neutral-950 selection:text-white font-sans">
+      {/* Header Bar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
+        <div>
+          <h1 className="text-2xl font-extrabold text-neutral-950 tracking-tight">Corporate Openings Management</h1>
+          <p className="text-xs text-neutral-500 font-mono">Create, publish, inspect, and manage engineering job listings</p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => loadJobs()}
+            className="px-3.5 py-2.5 bg-white border border-neutral-300 rounded-xl text-xs font-mono text-neutral-700 hover:bg-neutral-50 transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
+            <span>Refresh</span>
+          </button>
+
+          <button
+            onClick={() => setIsCreateJobOpen(true)}
+            className="px-4 py-2.5 bg-neutral-950 text-white text-xs font-bold rounded-xl hover:bg-neutral-800 transition-all flex items-center gap-2 shadow-md cursor-pointer"
+          >
+            <PlusCircle className="w-4 h-4 text-white" />
+            <span>Post New Job</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Content Area */}
+      {isLoading ? (
+        <div className="space-y-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-28 bg-neutral-100 rounded-2xl animate-pulse"></div>
+          ))}
+        </div>
+      ) : jobs.length === 0 ? (
+        <div className="bg-white border border-neutral-200 shadow-sm rounded-2xl p-12 text-center space-y-4 max-w-lg mx-auto">
+          <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center mx-auto">
+            <Briefcase className="w-7 h-7 text-neutral-500" />
+          </div>
+          <div className="space-y-1">
+            <h3 className="text-base font-bold text-neutral-950">No corporate job postings created yet</h3>
+            <p className="text-xs text-neutral-500">
+              Publish engineering openings for candidates to discover on SkillAssociate marketplace.
+            </p>
+          </div>
+          <button
+            onClick={() => setIsCreateJobOpen(true)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-950 text-white text-xs font-bold rounded-xl hover:bg-neutral-800 transition-all shadow-md cursor-pointer"
+          >
+            <PlusCircle className="w-4 h-4 text-white" />
+            <span>Post Your First Job</span>
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {jobs.map((job) => (
+            <div
+              key={job.id}
+              className="bg-white border border-neutral-200 shadow-sm rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-neutral-300 transition-all"
+            >
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <h3 className="text-base font-bold text-neutral-950">
+                    <Link href={`/company/jobs/${job.id}`} className="hover:underline">
+                      {job.title}
+                    </Link>
+                  </h3>
+                  <span
+                    className={`px-2.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                      job.status === "ACTIVE"
+                        ? "bg-neutral-950 text-white"
+                        : "bg-neutral-100 text-neutral-500 border border-neutral-200"
+                    }`}
+                  >
+                    {job.status}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2 text-xs font-mono text-neutral-500">
+                  <span>{job.location}</span>
+                  <span>•</span>
+                  <span>{job.workMode}</span>
+                  <span>•</span>
+                  <span>{job.type}</span>
+                  <span>•</span>
+                  <span className="text-neutral-950 font-bold">{job.salary || "Competitive"}</span>
+                </div>
+
+                <div className="text-[11px] font-mono text-neutral-400">
+                  Posted {new Date(job.postedAt).toLocaleDateString()} • {job.applicationsCount} Applications Received
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-neutral-200">
+                <Link
+                  href={`/company/jobs/${job.id}`}
+                  className="px-3.5 py-2 bg-white border border-neutral-300 rounded-xl text-xs font-bold text-neutral-950 hover:bg-neutral-50 transition-all flex items-center gap-1.5 shadow-xs"
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>View Listing</span>
+                </Link>
+
+                <button
+                  onClick={() => setEditingJobId(job.id)}
+                  className="px-3.5 py-2 bg-neutral-950 text-white rounded-xl text-xs font-bold hover:bg-neutral-800 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                >
+                  <Pencil className="w-3.5 h-3.5 text-white" />
+                  <span>Edit Opening</span>
+                </button>
+
+                <button
+                  onClick={() => handleToggleJobStatus(job.id, job.status)}
+                  className="px-3.5 py-2 bg-neutral-100 border border-neutral-300 rounded-xl text-xs font-bold text-neutral-800 hover:bg-neutral-200 transition-all cursor-pointer"
+                >
+                  {job.status === "ACTIVE" ? "Close Job" : "Reopen Job"}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* CREATE JOB MODAL */}
+      <CreateJobModal
+        isOpen={isCreateJobOpen}
+        onClose={() => setIsCreateJobOpen(false)}
+        onJobCreated={() => loadJobs()}
+      />
+
+      {/* EDIT & REPUBLISH JOB MODAL */}
+      <EditJobModal
+        jobId={editingJobId}
+        isOpen={Boolean(editingJobId)}
+        onClose={() => setEditingJobId(null)}
+        onJobUpdated={() => loadJobs()}
+      />
+    </div>
+  );
+}
