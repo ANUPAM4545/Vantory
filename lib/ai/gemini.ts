@@ -110,8 +110,10 @@ function cleanSingleLine(str: string): string {
  */
 function isCritiqueNote(str: string): boolean {
   if (!str || str.length < 10) return true;
-  return /^(Words \(subjective|It lacks|Weaknesses|Strengths|Critique|Analysis:|Goal:|Note:|Constraint|Role:)/i.test(
-    str.trim()
+  const s = str.trim();
+  return (
+    /^(Words \(subjective|It lacks|Weaknesses|Strengths|Critique|Analysis:|Goal:|Note:|Constraint|Role:|Can sometimes|Undersell|Critique:)/i.test(s) ||
+    /\b(undersell|framing|subjective|critique|weakness|lacks|advice|not framed as|can sometimes)\b/i.test(s)
   );
 }
 
@@ -127,9 +129,16 @@ function generateFallbackEnhancement(
   let cleaned = text.trim().replace(/\.$/, "");
 
   if (sectionContext.toLowerCase().includes("summary")) {
-    const enhanced = `Results-driven Software Engineer with 3+ years of experience architecting high-performance web applications and scalable microservices, consistently optimizing system latency by 35%.`;
-    const alternative = `Software Engineer specializing in scalable web applications and microservices, driving robust system reliability and clean architecture.`;
-    const analysis = `Leading with core engineering specializations and quantifiable latency impact makes your summary stand out to hiring managers.`;
+    const isGenAI = /generative ai|llm|langchain|langgraph|multi-agent/i.test(text);
+    const enhanced = isGenAI
+      ? `Results-driven Fullstack & Generative AI Engineer specializing in multi-agent orchestration systems, LangChain/LangGraph integrations, and production-grade web applications across React, Next.js, and Node.js.`
+      : `Results-driven Software Engineer with 3+ years of experience architecting high-performance web applications and scalable microservices, consistently optimizing system latency by 35%.`;
+
+    const alternative = isGenAI
+      ? `Fullstack Engineer with hands-on expertise in Generative AI architectures, multi-agent frameworks, and modern Next.js/React full-stack ecosystems.`
+      : `Software Engineer specializing in scalable web applications and microservices, driving robust system reliability and clean architecture.`;
+
+    const analysis = `Highlighting your specific technical specializations in Generative AI, multi-agent frameworks, and full-stack engineering maximizes recruiter visibility.`;
 
     return {
       enhancedText: cleanSingleLine(enhanced),
@@ -356,7 +365,8 @@ INSTRUCTIONS:
         ],
         generationConfig: {
           temperature: 0.2,
-          maxOutputTokens: 500,
+          maxOutputTokens: 600,
+          responseMimeType: "application/json",
         },
       };
 
