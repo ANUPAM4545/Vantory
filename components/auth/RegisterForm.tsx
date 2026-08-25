@@ -132,7 +132,7 @@ export function RegisterForm({ initialRole, onSwitchToLogin, onSuccess }: Regist
             </h4>
             <p className="text-[11px] text-neutral-500 font-mono">
               {role === "company"
-                ? "Post jobs & review candidate applications with real SkillAssociate resumes."
+                ? "Post jobs & review candidate applications with real Vantory resumes."
                 : role === "institute"
                 ? "Manage student placement drives & placement analytics."
                 : "Build ATS resumes, calculate match scores, & practice AI interviews."}

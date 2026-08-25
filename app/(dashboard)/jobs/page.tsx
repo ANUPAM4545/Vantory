@@ -169,7 +169,7 @@ export default function JobsMarketplacePage() {
               Exclusive Engineering & Corporate Jobs
             </h1>
             <p className="text-sm text-neutral-500 max-w-2xl leading-relaxed">
-              Companies post hiring roles directly on SkillAssociate. Candidates can discover verified opportunities and apply using their SkillAssociate Resume.
+              Companies post hiring roles directly on Vantory. Candidates can discover verified opportunities and apply using their Vantory Resume.
             </p>
           </div>
 
@@ -197,7 +197,7 @@ export default function JobsMarketplacePage() {
           <div className="flex items-center gap-2.5">
             <Info className="w-4 h-4 text-neutral-950 shrink-0" />
             <p>
-              <strong className="text-neutral-950 font-bold">Verified SkillAssociate Resume Gateway:</strong> Direct delivery to registered company hiring inbox with evidence-based ATS verification.
+              <strong className="text-neutral-950 font-bold">Verified Vantory Resume Gateway:</strong> Direct delivery to registered company hiring inbox with evidence-based ATS verification.
             </p>
           </div>
 
@@ -690,7 +690,7 @@ export default function JobsMarketplacePage() {
                             className="px-4 py-2 bg-neutral-950 text-white font-bold text-xs rounded-xl hover:bg-neutral-800 transition-all flex items-center gap-1.5 shadow-md cursor-pointer"
                           >
                             <Send className="w-3.5 h-3.5 text-white" />
-                            <span>Apply with SkillAssociate Resume</span>
+                            <span>Apply with Vantory Resume</span>
                           </button>
                         )}
                       </div>

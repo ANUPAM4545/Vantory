@@ -1,5 +1,5 @@
 /**
- * Gemini AI Co-Pilot Integration for SkillAssociate
+ * Gemini AI Co-Pilot Integration for Vantory
  * Enforces strict prompt injection boundaries, off-topic filtering, & sanitization.
  * Provides high-impact, realistic ATS resume options with zero critique leaks or placeholders.
  */

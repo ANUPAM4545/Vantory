@@ -1,5 +1,5 @@
 /**
- * In-Memory Sliding Window Rate Limiter for SkillAssociate API Routes
+ * In-Memory Sliding Window Rate Limiter for Vantory API Routes
  */
 
 interface RateLimitRecord {

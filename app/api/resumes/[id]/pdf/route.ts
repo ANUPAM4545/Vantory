@@ -32,7 +32,7 @@ export async function GET(
         title: resume.title,
         latexSource,
         resumeData,
-        downloadFileName: `${(resumeData.personalInfo?.fullName || "Resume").replace(/\s+/g, "_")}_SkillAssociate.pdf`,
+        downloadFileName: `${(resumeData.personalInfo?.fullName || "Resume").replace(/\s+/g, "_")}_Vantory.pdf`,
       });
     }
 

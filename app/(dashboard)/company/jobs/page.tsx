@@ -145,7 +145,7 @@ export default function CompanyJobsPage() {
           <div className="space-y-1">
             <h3 className="text-base font-bold text-neutral-950">No corporate job postings created yet</h3>
             <p className="text-xs text-neutral-500">
-              Publish engineering openings for candidates to discover on SkillAssociate marketplace.
+              Publish engineering openings for candidates to discover on Vantory marketplace.
             </p>
           </div>
           <button

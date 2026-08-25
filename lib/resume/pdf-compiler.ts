@@ -33,10 +33,11 @@ export async function compileResumePdf(data: ResumeData): Promise<PDFCompilerRes
         margins: { top: 36, bottom: 36, left: 36, right: 36 },
         compress: false,
         info: {
-          Title: `${personalInfo.fullName || "Resume"} — SkillAssociate`,
+          Title: `${personalInfo.fullName || "Resume"} — Vantory`,
           Author: personalInfo.fullName || "Candidate",
-          Subject: "Professional Resume",
-          Creator: "SkillAssociate LaTeX Resume Engine",
+          Subject: "Professional Candidate Resume — Vantory Platform",
+          Keywords: "Resume, ATS, Curriculum Vitae, Professional, Vantory",
+          Creator: "Vantory LaTeX Resume Engine",
         },
       });
 
@@ -45,7 +46,7 @@ export async function compileResumePdf(data: ResumeData): Promise<PDFCompilerRes
       doc.on("end", () => {
         const buffer = Buffer.concat(chunks);
         const pageCount = doc.bufferedPageRange().count || 1;
-        const fileName = `${(personalInfo.fullName || "Resume").replace(/\s+/g, "_")}_SkillAssociate.pdf`;
+        const fileName = `${(personalInfo.fullName || "Resume").replace(/\s+/g, "_")}_Vantory.pdf`;
         resolve({ buffer, pageCount, fileName });
       });
       doc.on("error", (err: Error) => reject(err));

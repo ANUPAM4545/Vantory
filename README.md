@@ -1,6 +1,6 @@
-# SkillAssociate — AI Recruitment & Resume Intelligence Platform
+# Vantory — Career Advantage + Career Direction
 
-SkillAssociate is an industry-grade, full-stack recruitment and candidate preparation platform built with **Next.js 15 App Router**, **TypeScript**, **TailwindCSS**, **Prisma**, **SQLite**, and **Google Gemini AI**.
+Vantory is an industry-grade, full-stack career platform and recruitment intelligence system built with **Next.js 15 App Router**, **TypeScript**, **TailwindCSS**, **Prisma**, **PostgreSQL**, and **Google Gemini AI**.
 
 It seamlessly bridges the gap between job candidates, corporate employers, and academic placement institutes by offering real-time ATS resume analysis, job-matching intelligence, adaptive AI mock interviews, and automated recruitment pipelines.
 

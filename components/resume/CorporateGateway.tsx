@@ -41,7 +41,7 @@ export function CorporateGateway() {
             Apply & Send Verified Resume to Registered Companies
           </h3>
           <p className="text-xs text-neutral-400 mt-0.5">
-            Finished updating your resume? Select a target company to dispatch your SkillAssociate resume directly to their recruiter inbox.
+            Finished updating your resume? Select a target company to dispatch your Vantory resume directly to their recruiter inbox.
           </p>
         </div>
       </div>

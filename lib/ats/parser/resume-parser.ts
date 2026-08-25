@@ -1,5 +1,5 @@
 /**
- * Unified Resume Parser for SkillAssociate (Milestone 6)
+ * Unified Resume Parser for Vantory (Milestone 6)
  * Prefers structured ResumeData from Resume Builder (canonical truth).
  * Supports text extracted from PDF/DOCX file uploads.
  */
@@ -52,7 +52,7 @@ export interface UnifiedParsedResume {
 }
 
 /**
- * Parse structured ResumeData from SkillAssociate Resume Builder
+ * Parse structured ResumeData from Vantory Resume Builder
  */
 export function parseStructuredResume(data: ResumeData): UnifiedParsedResume {
   const allSkills: string[] = [];

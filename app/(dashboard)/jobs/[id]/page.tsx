@@ -238,7 +238,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
                 className="px-6 py-3 bg-neutral-950 text-white font-extrabold text-xs rounded-xl hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
               >
                 <Send className="w-4 h-4 text-white" />
-                <span>Apply with SkillAssociate Resume</span>
+                <span>Apply with Vantory Resume</span>
               </button>
             )}
 
@@ -285,7 +285,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
             <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
               <h3 className="text-xs font-mono font-bold text-neutral-950 uppercase tracking-wider flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-500" />
-                <span>SkillAssociate Job Match Analysis</span>
+                <span>Vantory Job Match Analysis</span>
               </h3>
               <span className="text-[10px] font-mono text-neutral-500 font-semibold">Milestone 6 ATS Engine</span>
             </div>
@@ -364,7 +364,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
               <span>ABOUT {job.company.toUpperCase()}</span>
             </h3>
             <p className="text-xs text-neutral-700 leading-relaxed font-sans whitespace-pre-line">
-              {job.aboutCompany || "Registered hiring employer on SkillAssociate verified candidate marketplace. Applications are delivered directly to hiring engineering leads."}
+              {job.aboutCompany || "Registered hiring employer on Vantory verified candidate marketplace. Applications are delivered directly to hiring engineering leads."}
             </p>
           </div>
 

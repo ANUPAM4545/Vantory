@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { verifyToken } from "@/lib/auth/jwt";
 
-const COOKIE_NAME = "skillassociate_session";
+const COOKIE_NAME = "vantory_session";
 
 // Route protection mappings
 const candidateRoutes = [

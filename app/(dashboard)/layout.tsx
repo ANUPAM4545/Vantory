@@ -6,6 +6,7 @@ import { Header } from "@/components/shell/header";
 import { MobileNav } from "@/components/shell/mobile-nav";
 import { ToastProvider } from "@/components/ui/toast";
 import { CompanyOnboardingModal } from "@/components/company/CompanyOnboardingModal";
+import { InstituteOnboardingModal } from "@/components/institute/InstituteOnboardingModal";
 import { PageTransition } from "@/components/providers/PageTransition";
 
 export default function DashboardLayout({
@@ -18,8 +19,9 @@ export default function DashboardLayout({
   return (
     <ToastProvider>
       <div className="min-h-screen bg-[#FAFAFA] text-neutral-900 flex flex-col md:flex-row antialiased selection:bg-neutral-900 selection:text-white">
-        {/* Company First-Step Onboarding Modal */}
+        {/* Onboarding Modals */}
         <CompanyOnboardingModal />
+        <InstituteOnboardingModal />
 
         {/* Desktop Sidebar */}
         <Sidebar className="hidden md:flex" />
@@ -40,7 +42,7 @@ export default function DashboardLayout({
 
           {/* Minimal SaaS Footer */}
           <footer className="border-t border-neutral-200 py-4 px-6 text-center text-xs font-mono text-neutral-400">
-            SkillAssociate Platform • Strict Monochrome Standard • Version 1.0.0
+            Vantory Platform • Strict Monochrome Standard • Version 1.0.0
           </footer>
         </div>
       </div>

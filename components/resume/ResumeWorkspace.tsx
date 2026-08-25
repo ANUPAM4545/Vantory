@@ -132,7 +132,7 @@ export function ResumeWorkspace({ initialResume }: ResumeWorkspaceProps) {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${(resumeData.personalInfo?.fullName || "Resume").replace(/\s+/g, "_")}_SkillAssociate.pdf`;
+      a.download = `${(resumeData.personalInfo?.fullName || "Resume").replace(/\s+/g, "_")}_Vantory.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();

@@ -1,5 +1,5 @@
 /**
- * Prompt Guard for SkillAssociate ATS Checker (Milestone 6)
+ * Prompt Guard for Vantory ATS Checker (Milestone 6)
  * Sanitizes job description & resume text inputs to prevent prompt injection attacks.
  */
 

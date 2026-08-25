@@ -174,10 +174,10 @@ export default function Home() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-full bg-neutral-950 text-white font-extrabold flex items-center justify-center text-sm tracking-tight shadow-md group-hover:scale-105 transition-transform">
-              S
+              V
             </div>
             <span className="font-extrabold tracking-tight text-lg sm:text-xl text-neutral-950 font-sans">
-              SkillAssociate
+              Vantory
             </span>
           </Link>
 
@@ -217,7 +217,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/90 text-xs font-medium text-neutral-600 shadow-2xs"
         >
           <span className="w-2 h-2 rounded-full bg-neutral-950 inline-block" />
-          <span>Introducing SkillAssociate Enterprise 2.0</span>
+          <span>Introducing Vantory Enterprise 2.0 — Career Advantage + Career Direction</span>
         </motion.div>
       </div>
 
@@ -296,9 +296,9 @@ export default function Home() {
 
             {/* Address Bar */}
             <div className="bg-white border border-neutral-200/90 rounded-full px-8 py-1 text-xs font-mono text-neutral-500 shadow-2xs font-medium text-center">
-              {heroDashboardTab === "candidate" && "skillassociate.com/dashboard"}
-              {heroDashboardTab === "employer" && "skillassociate.com/company/dashboard"}
-              {heroDashboardTab === "institute" && "skillassociate.com/institute/dashboard"}
+              {heroDashboardTab === "candidate" && "vantory.com/dashboard"}
+              {heroDashboardTab === "employer" && "vantory.com/company/dashboard"}
+              {heroDashboardTab === "institute" && "vantory.com/institute/dashboard"}
             </div>
 
             <div className="w-12" />
@@ -311,10 +311,10 @@ export default function Home() {
               {/* Brand Header */}
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-neutral-950 text-white font-extrabold flex items-center justify-center text-xs shadow-xs">
-                  S
+                  V
                 </div>
                 <span className="text-base font-extrabold text-neutral-950 tracking-tight font-sans">
-                  SkillAssociate
+                  Vantory
                 </span>
               </div>
 
@@ -718,7 +718,7 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-neutral-800" />
                 </div>
                 <div className="bg-neutral-900 border border-neutral-800 rounded-full px-6 py-1 text-[11px] font-mono text-neutral-400">
-                  skillassociate.live/preview
+                  vantory.live/preview
                 </div>
                 <div className="w-12" />
               </div>
@@ -1584,7 +1584,7 @@ export default function Home() {
             {[
               {
                 quote:
-                  '"SkillAssociate completely transformed how we handle candidate screening and LaTeX ATS scoring. The real-time mock interview feedback saved our engineering team 40+ hours per quarter."',
+                  '"Vantory completely transformed how we handle candidate screening and LaTeX ATS scoring. The real-time mock interview feedback saved our engineering team 40+ hours per quarter."',
                 author: "Sarah Jenkins",
                 role: "VP of Talent, GlobalBank",
                 initial: "S",
@@ -1599,7 +1599,7 @@ export default function Home() {
               },
               {
                 quote:
-                  '"Finally, a career acceleration and recruitment platform that doesn\'t look like it was built in 2010. SkillAssociate brings modern SaaS architecture to a legacy industry."',
+                  '"Finally, a career acceleration and recruitment platform that doesn\'t look like it was built in 2010. Vantory brings modern SaaS architecture to a legacy industry."',
                 author: "Elena Rodriguez",
                 role: "Founder, Pinnacle Events",
                 initial: "E",
@@ -1838,7 +1838,7 @@ export default function Home() {
               Built on Modern Monolithic Standards
             </h2>
             <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
-              Explore the technical architecture, zero-fallback APIs, and deterministic engines powering SkillAssociate.
+              Explore the technical architecture, zero-fallback APIs, and deterministic engines powering Vantory.
             </p>
           </motion.div>
 
@@ -1986,7 +1986,7 @@ export default function Home() {
       <section className="py-32 sm:py-44 bg-white px-6">
         <div className="max-w-5xl mx-auto bg-[#F9FAFB] border border-neutral-200/90 rounded-3xl sm:rounded-4xl p-12 sm:p-16 text-center space-y-6 shadow-xl relative overflow-hidden">
           <h2 className="text-4xl sm:text-5xl font-black text-neutral-950 tracking-tight max-w-xl mx-auto leading-[1.15]">
-            Get Started with SkillAssociate Today.
+            Get Started with Vantory Today.
           </h2>
           <p className="text-neutral-500 text-sm sm:text-base max-w-md mx-auto font-normal leading-relaxed">
             Join candidate applicants, verified employers, and educational institutions on a unified career engine.
@@ -2013,10 +2013,10 @@ export default function Home() {
             <div className="lg:col-span-1 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-white text-black font-black flex items-center justify-center text-sm shadow-md">
-                  S
+                  V
                 </div>
                 <span className="text-xl font-bold tracking-tight text-white">
-                  SkillAssociate
+                  Vantory
                 </span>
               </div>
               <p className="text-[13px] text-neutral-400 font-normal leading-relaxed max-w-[250px]">
@@ -2181,13 +2181,13 @@ export default function Home() {
           {/* Gigantic Watermark Background Typography (Sized to fit perfectly on one line) */}
           <div className="pt-6 pb-2 text-center select-none pointer-events-none overflow-hidden">
             <h1 className="text-[10.5vw] font-black tracking-tighter text-[#131315] uppercase leading-none opacity-90">
-              SKILLASSOCIATE
+              VANTORY
             </h1>
           </div>
 
           {/* Bottom Status Bar */}
           <div className="pt-8 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] font-mono text-neutral-500">
-            <div>© 2026 SkillAssociate Inc. All rights reserved.</div>
+            <div>© 2026 Vantory Inc. All rights reserved.</div>
 
             <div className="flex items-center gap-2 text-[11px] font-mono font-bold tracking-widest uppercase text-neutral-400">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

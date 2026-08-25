@@ -85,7 +85,7 @@ export function ResumeToolbar({
         <div className="flex items-center gap-2 mb-1">
           <Badge variant="dark">
             <Sparkles className="w-3 h-3 text-white" />
-            SKILLASSOCIATE BUILDER
+            VANTORY BUILDER
           </Badge>
           <span className="text-xs font-mono text-neutral-400">
             {saveStatus === "saving" && "Saving..."}
@@ -185,7 +185,7 @@ export function ResumeToolbar({
           setAtsResult(null);
           setAtsError(null);
         }}
-        title="SkillAssociate Job Match Score"
+        title="Vantory Job Match Score"
         description="Paste a Target Job Description to analyze your ATS Compatibility Score directly against your resume."
       >
         <div className="space-y-4 pt-2">

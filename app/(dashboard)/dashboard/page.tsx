@@ -246,7 +246,7 @@ export default function CandidateDashboardPage() {
               <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:translate-x-1 transition-transform" />
             </h3>
             <p className="text-xs text-neutral-500 leading-relaxed">
-              Browse corporate openings and submit applications with your SkillAssociate Resume.
+              Browse corporate openings and submit applications with your Vantory Resume.
             </p>
           </div>
         </Link>

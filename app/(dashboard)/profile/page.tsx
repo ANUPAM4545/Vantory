@@ -59,7 +59,7 @@ export default function CandidateProfilePage() {
                 VERIFIED PROFILE
               </span>
             </div>
-            <p className="text-xs text-neutral-500 font-mono">{user?.email || "candidate@skillassociate.com"}</p>
+            <p className="text-xs text-neutral-500 font-mono">{user?.email || "candidate@vantory.com"}</p>
           </div>
         </div>
 

@@ -25,9 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SkillAssociate — Build. Prepare. Improve. Get Hired.",
+  title: "Vantory — Career Advantage + Career Direction",
   description:
-    "Production-grade career platform for candidates to build ATS resumes, evaluate scores, practice AI mock interviews, and land top tech jobs.",
+    "Production-grade career platform for candidates to build ATS resumes, evaluate scores, practice AI mock interviews, and land top tech jobs with Vantory.",
   icons: {
     icon: "/favicon.ico",
   },

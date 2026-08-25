@@ -213,7 +213,7 @@ export class ReportGenerator {
         topic: "Full Simulated Mock Interview",
         whyItMatters: "Consolidates learning and verifies interview readiness under timed conditions.",
         whatToRevise: ["Review 7-day notes", "Practice voice articulation and timing"],
-        suggestedPractice: "Re-run a full 30-minute AI Mock Interview on SkillAssociate.",
+        suggestedPractice: "Re-run a full 30-minute AI Mock Interview on Vantory.",
         targetOutcome: "Achieve a Readiness Score of 85+.",
       },
     ];

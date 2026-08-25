@@ -94,7 +94,7 @@ export function ApplyJobModal({
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedResumeId) {
-      setError("Please select a SkillAssociate resume.");
+      setError("Please select a Vantory resume.");
       return;
     }
 
@@ -172,7 +172,7 @@ export function ApplyJobModal({
               <div className="space-y-1">
                 <h3 className="text-base font-bold text-neutral-950">Application Submitted Successfully!</h3>
                 <p className="text-xs text-neutral-600">
-                  Your SkillAssociate Resume and cover note have been delivered to {companyName}.
+                  Your Vantory Resume and cover note have been delivered to {companyName}.
                 </p>
               </div>
 
@@ -195,7 +195,7 @@ export function ApplyJobModal({
           ) : isLoadingResumes ? (
             <div className="text-center py-10 space-y-2">
               <div className="w-6 h-6 border-2 border-neutral-950 border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <p className="text-xs font-mono text-neutral-500">Loading your SkillAssociate Resumes...</p>
+              <p className="text-xs font-mono text-neutral-500">Loading your Vantory Resumes...</p>
             </div>
           ) : resumes.length === 0 ? (
             <div className="p-6 bg-neutral-50 border border-neutral-200 rounded-xl text-center space-y-4">
@@ -205,7 +205,7 @@ export function ApplyJobModal({
               <div className="space-y-1">
                 <h3 className="text-sm font-bold text-neutral-950">You don&apos;t have a resume yet</h3>
                 <p className="text-xs text-neutral-600">
-                  Create a professional SkillAssociate resume before applying to verified job postings.
+                  Create a professional Vantory resume before applying to verified job postings.
                 </p>
               </div>
               <Link
@@ -221,7 +221,7 @@ export function ApplyJobModal({
               {/* Step 1: Select Resume */}
               <div className="space-y-3">
                 <label className="text-xs font-mono text-neutral-500 uppercase tracking-wider block font-semibold">
-                  1. Select SkillAssociate Resume
+                  1. Select Vantory Resume
                 </label>
 
                 <div className="space-y-2 max-h-48 overflow-y-auto pr-1">

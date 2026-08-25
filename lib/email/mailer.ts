@@ -66,7 +66,7 @@ export async function sendContactEmail(payload: ContactMessagePayload): Promise<
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; background-color: #ffffff;">
       <h2 style="color: #09090b; border-bottom: 2px solid #09090b; padding-bottom: 10px;">New Support & Contact Inquiry</h2>
-      <p>You have received a new inquiry from the SkillAssociate Platform.</p>
+      <p>You have received a new inquiry from the Vantory Platform.</p>
       
       <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
         <tr>
@@ -97,17 +97,17 @@ export async function sendContactEmail(payload: ContactMessagePayload): Promise<
       </div>
 
       <div style="margin-top: 25px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
-        SkillAssociate Platform Notification • Automated Real-time Dispatch
+        Vantory Platform Notification • Automated Real-time Dispatch
       </div>
     </div>
   `;
 
   try {
     const info = await transporter.sendMail({
-      from: `"${payload.name} via SkillAssociate" <noreply@skillassociate.com>`,
+      from: `"${payload.name} via Vantory" <noreply@vantory.com>`,
       to: targetRecipient,
       replyTo: payload.email,
-      subject: `[SkillAssociate Contact] ${payload.subject || "New Inquiry from " + payload.name}`,
+      subject: `[Vantory Contact] ${payload.subject || "New Inquiry from " + payload.name}`,
       text: `Sender: ${payload.name} (${payload.email})\nPhone: ${payload.phone || "N/A"}\nMessage:\n${payload.message}`,
       html: htmlContent,
     });

@@ -162,7 +162,7 @@ export default function CompanyProfilePage() {
                   required
                   value={editCompanyName}
                   onChange={(e) => setEditCompanyName(e.target.value)}
-                  placeholder="e.g. SkillAssociate Corp"
+                  placeholder="e.g. Vantory Corp"
                   className="w-full bg-white border border-neutral-300 rounded-xl p-3 text-xs text-neutral-950 font-bold focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950"
                 />
               </div>

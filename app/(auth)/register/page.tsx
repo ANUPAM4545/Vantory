@@ -65,7 +65,7 @@ export default function RegisterPage() {
         {/* Dark Architectural Sculpture Background Image */}
         <Image
           src="/auth-sidebar-bg.jpg"
-          alt="SkillAssociate Platform Infrastructure"
+          alt="Vantory Platform Infrastructure"
           fill
           className="object-cover object-center opacity-70"
           priority
@@ -79,10 +79,10 @@ export default function RegisterPage() {
         <div className="relative z-20 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-9 h-9 rounded-full bg-white text-black font-black flex items-center justify-center text-sm shadow-md group-hover:scale-105 transition-transform">
-              S
+              V
             </div>
             <span className="text-xl font-extrabold tracking-tight text-white font-sans">
-              SkillAssociate
+              Vantory
             </span>
           </Link>
         </div>
@@ -110,10 +110,10 @@ export default function RegisterPage() {
         <div className="lg:hidden flex items-center justify-between pb-6">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-neutral-950 text-white font-extrabold flex items-center justify-center text-xs">
-              S
+              V
             </div>
             <span className="font-extrabold text-base tracking-tight text-neutral-950">
-              SkillAssociate
+              Vantory
             </span>
           </Link>
         </div>

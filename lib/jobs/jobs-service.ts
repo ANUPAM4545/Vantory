@@ -281,7 +281,7 @@ export async function applyToJob(
       status: "APPLIED",
       title: "Application Submitted",
       timestamp: new Date().toISOString(),
-      note: "Application submitted with SkillAssociate Resume.",
+      note: "Application submitted with Vantory Resume.",
     },
   ];
 

@@ -285,7 +285,7 @@ export default function ApplicationDetailPage({ params }: { params: Promise<{ id
           <div className="bg-white border border-neutral-200 shadow-sm rounded-2xl p-6 space-y-4">
             <h3 className="text-xs font-mono font-bold text-neutral-950 uppercase tracking-wider border-b border-neutral-200 pb-2 flex items-center gap-2">
               <FileCheck className="w-4 h-4 text-neutral-950" />
-              <span>SkillAssociate Resume Submitted</span>
+              <span>Vantory Resume Submitted</span>
             </h3>
 
             {application.resume ? (

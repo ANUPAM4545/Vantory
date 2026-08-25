@@ -77,7 +77,7 @@ export function ContactSupportModal({ isOpen, onClose }: ContactSupportModalProp
                   Direct Support & Contact
                 </h3>
                 <p className="text-xs text-neutral-500 font-medium mt-0.5">
-                  SkillAssociate Platform — Get in touch with our team.
+                  Vantory Platform — Get in touch with our team.
                 </p>
               </div>
 

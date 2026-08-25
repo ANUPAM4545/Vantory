@@ -58,7 +58,7 @@ export default function AccountSettingsPage() {
             <input
               type="email"
               disabled
-              value={userEmail || "candidate@skillassociate.com"}
+              value={userEmail || "candidate@vantory.com"}
               className="w-full text-xs bg-neutral-100 border border-neutral-300 rounded-xl p-3 text-neutral-600 font-mono cursor-not-allowed"
             />
           </div>
@@ -69,7 +69,7 @@ export default function AccountSettingsPage() {
               <span>Security & Privacy</span>
             </div>
             <p className="text-xs text-neutral-600">
-              Your candidate profile & resumes are protected under SkillAssociate strict data isolation standard.
+              Your candidate profile & resumes are protected under Vantory strict data isolation standard.
             </p>
           </div>
 

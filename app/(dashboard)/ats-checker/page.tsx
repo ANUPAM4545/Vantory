@@ -1075,7 +1075,7 @@ export default function AtsCheckerPage() {
                 Do you genuinely possess hands-on experience or project work with {activeTruthGuardItem.skillName}?
               </p>
               <p className="text-[10px] text-neutral-500 italic">
-                * SkillAssociate Truth Guard never fabricates fake experience, metrics, or certifications.
+                * Vantory Truth Guard never fabricates fake experience, metrics, or certifications.
               </p>
             </div>
 

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { signToken, verifyToken, type SessionJWTPayload } from "./jwt";
 
-export const COOKIE_NAME = "skillassociate_session";
+export const COOKIE_NAME = "vantory_session";
 export const COOKIE_DURATION_SECONDS = 7 * 24 * 60 * 60; // 7 Days
 
 /**

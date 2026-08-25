@@ -1,5 +1,5 @@
 /**
- * Core Data Structures for SkillAssociate AI Resume ATS & Job Match Analysis Engine (v2.1)
+ * Core Data Structures for Vantory AI Resume ATS & Job Match Analysis Engine (v2.1)
  */
 
 export type RequirementType = "REQUIRED" | "PREFERRED" | "RESPONSIBILITY" | "CONTEXT" | "UNKNOWN";

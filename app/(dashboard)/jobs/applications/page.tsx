@@ -194,7 +194,7 @@ export default function ApplicationsTrackingPage() {
           <div className="space-y-1">
             <h3 className="text-base font-bold text-neutral-950">You haven&apos;t applied to any jobs yet</h3>
             <p className="text-xs text-neutral-500">
-              Discover verified corporate openings in the marketplace and apply with your SkillAssociate Resume.
+              Discover verified corporate openings in the marketplace and apply with your Vantory Resume.
             </p>
           </div>
           <Link

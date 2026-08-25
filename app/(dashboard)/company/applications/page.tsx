@@ -381,7 +381,7 @@ export default function CompanyApplicationsPage() {
           <div className="space-y-1">
             <h3 className="text-base font-bold text-neutral-950">No candidate applications found</h3>
             <p className="text-xs text-neutral-500">
-              Applications submitted by candidates using their SkillAssociate Resumes will appear here in real-time.
+              Applications submitted by candidates using their Vantory Resumes will appear here in real-time.
             </p>
           </div>
         </div>
@@ -532,7 +532,7 @@ export default function CompanyApplicationsPage() {
                   </div>
                 )}
 
-                {/* Attached SkillAssociate Formatted Resume Summary Card */}
+                {/* Attached Vantory Formatted Resume Summary Card */}
                 {parsedData && (
                   <div className="p-5 bg-neutral-50 border border-neutral-200 rounded-2xl space-y-4 shadow-xs">
                     <div className="flex items-center justify-between border-b border-neutral-200 pb-3">

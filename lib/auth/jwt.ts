@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 
-const JWT_SECRET = process.env.JWT_SECRET || "skillassociate_super_secret_jwt_key_monochrome_2026";
+const JWT_SECRET = process.env.JWT_SECRET || "vantory_super_secret_jwt_key_monochrome_2026";
 const secretKey = new TextEncoder().encode(JWT_SECRET);
 
 export interface SessionJWTPayload extends JWTPayload {

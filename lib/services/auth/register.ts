@@ -84,7 +84,7 @@ export async function registerUser(input: RegisterInput) {
         userId: newUser.id,
         type: "USER_REGISTERED",
         title: "Account Created",
-        detail: `Registered as ${targetRole} on SkillAssociate.`,
+        detail: `Registered as ${targetRole} on Vantory.`,
       },
     });
 

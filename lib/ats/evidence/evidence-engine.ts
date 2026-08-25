@@ -1,5 +1,5 @@
 /**
- * Evidence Engine for SkillAssociate AI Resume ATS Engine (v2.1)
+ * Evidence Engine for Vantory AI Resume ATS Engine (v2.1)
  * Scans candidate experience, projects, summary, & skills sections
  * to extract exact supporting evidence text snippets and classify evidence levels
  * as STRONG, MODERATE, WEAK, or MISSING.

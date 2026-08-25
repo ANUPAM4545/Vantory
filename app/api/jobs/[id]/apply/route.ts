@@ -18,7 +18,7 @@ export async function POST(
 
     if (!resumeId || typeof resumeId !== "string") {
       return NextResponse.json(
-        { success: false, error: "Please select a SkillAssociate Resume to apply." },
+        { success: false, error: "Please select a Vantory Resume to apply." },
         { status: 400 }
       );
     }

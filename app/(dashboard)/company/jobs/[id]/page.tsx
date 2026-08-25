@@ -381,7 +381,7 @@ export default function CompanyJobDetailPage({ params }: { params: Promise<{ id:
               <span>ABOUT {job.company.toUpperCase()}</span>
             </h3>
             <p className="text-xs text-neutral-700 leading-relaxed font-sans whitespace-pre-line">
-              {job.aboutCompany || "Registered hiring employer on SkillAssociate verified candidate marketplace. Applications are delivered directly to hiring engineering leads."}
+              {job.aboutCompany || "Registered hiring employer on Vantory verified candidate marketplace. Applications are delivered directly to hiring engineering leads."}
             </p>
           </div>
 
