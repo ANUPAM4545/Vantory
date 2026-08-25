@@ -144,7 +144,7 @@ export default function InstituteStudentDetailPage() {
     <div className="flex h-screen bg-[#FAFAFA] text-neutral-950 font-sans overflow-hidden">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scrollbar" data-lenis-prevent="true">
         <Header />
 
         <main className="p-6 sm:p-10 space-y-8 max-w-7xl mx-auto w-full">
@@ -203,7 +203,7 @@ export default function InstituteStudentDetailPage() {
               </div>
 
               <div className="p-3 bg-neutral-50 rounded-2xl space-y-1 border border-neutral-200/80">
-                <div className="text-[10px] font-mono text-neutral-400 font-bold uppercase">SKILLASSOCIATE RESUMES</div>
+                <div className="text-[10px] font-mono text-neutral-400 font-bold uppercase">VANTORY RESUMES</div>
                 <div className="text-lg font-black text-neutral-950">{student.resumes.length} Ready</div>
                 <div className="text-[10px] text-emerald-700 font-mono">
                   {student.readiness.isResumeReady ? "✓ Available" : "No Resume"}
@@ -248,7 +248,7 @@ export default function InstituteStudentDetailPage() {
 
               {student.resumes.length > 0 ? (
                 <div className="space-y-3">
-                  <h4 className="text-xs font-mono font-bold text-neutral-500 uppercase">SkillAssociate Resumes</h4>
+                  <h4 className="text-xs font-mono font-bold text-neutral-500 uppercase">Vantory Resumes</h4>
                   {student.resumes.map((r) => (
                     <div key={r.id} className="p-4 bg-neutral-50/80 border border-neutral-200/80 rounded-2xl flex items-center justify-between">
                       <div>
@@ -302,7 +302,24 @@ export default function InstituteStudentDetailPage() {
                   ))}
                 </div>
               ) : (
-                <div className="py-6 text-center text-xs font-mono text-neutral-400">No job applications submitted yet.</div>
+                <div className="py-4 text-center text-xs font-mono text-neutral-400">No job applications submitted yet.</div>
+              )}
+
+              {student.interviews.length > 0 && (
+                <div className="space-y-3 pt-4 border-t border-neutral-100">
+                  <h4 className="text-xs font-mono font-bold text-neutral-500 uppercase">AI Mock Interview Sessions</h4>
+                  {student.interviews.map((i) => (
+                    <div key={i.id} className="p-3 bg-neutral-50 border border-neutral-200/80 rounded-xl flex items-center justify-between text-xs">
+                      <div>
+                        <div className="font-bold text-neutral-950">{i.jobRole}</div>
+                        <div className="text-[10px] text-neutral-500 font-mono">{i.type} Interview</div>
+                      </div>
+                      <div className="font-black text-emerald-700 font-mono text-sm">
+                        {i.totalScore != null ? `${i.totalScore}/100` : i.isCompleted ? "Completed" : "In Progress"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </Card>
           </div>

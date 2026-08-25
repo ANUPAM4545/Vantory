@@ -68,6 +68,7 @@ model Institute {
   contactPhone       String?
   domain             String?
   establishedYear    Int?     @default(2010)
+  isOnboarded        Boolean  @default(false)
   verificationStatus String   @default("VERIFIED")
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt

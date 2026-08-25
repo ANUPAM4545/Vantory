@@ -6,10 +6,14 @@ export async function POST(req: NextRequest) {
   try {
     const admin = await requireInstituteAdmin();
     const body = await req.json();
-    const rows = Array.isArray(body.rows) ? body.rows : [];
+    const rows = Array.isArray(body.students)
+      ? body.students
+      : Array.isArray(body.rows)
+      ? body.rows
+      : [];
 
     const result = await importInstituteStudentsCsv(admin.id, rows);
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ success: true, ...result });
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : "Internal Server Error";
     const status = msg.includes("Unauthorized") ? 401 : msg.includes("Forbidden") ? 403 : 400;

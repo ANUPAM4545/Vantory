@@ -139,7 +139,7 @@ export default function InstituteStudentsPage() {
     <div className="flex h-screen bg-[#FAFAFA] text-neutral-950 font-sans overflow-hidden">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scrollbar" data-lenis-prevent="true">
         <Header />
 
         <main className="p-6 sm:p-10 space-y-8 max-w-7xl mx-auto w-full">
@@ -155,14 +155,15 @@ export default function InstituteStudentsPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => setIsImportModalOpen(true)}
-                leftIcon={<Upload className="w-4 h-4" />}
-              >
-                Import CSV Roster
-              </Button>
+              <Link href="/institute/students/import">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  leftIcon={<Upload className="w-4 h-4" />}
+                >
+                  Import CSV Roster
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -268,7 +269,9 @@ export default function InstituteStudentsPage() {
                     students.map((student) => (
                       <tr key={student.id} className="hover:bg-neutral-50/80 transition-colors">
                         <td className="py-4 px-6">
-                          <div className="font-extrabold text-neutral-950 text-sm">{student.name}</div>
+                          <Link href={`/institute/students/${student.id}`} className="font-extrabold text-neutral-950 text-sm hover:underline">
+                            {student.name}
+                          </Link>
                           <div className="text-[11px] text-neutral-500 font-mono">
                             {student.email} {student.studentId ? `• ID: ${student.studentId}` : ""}
                           </div>
