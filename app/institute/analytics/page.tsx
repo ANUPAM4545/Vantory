@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   BarChart3,
@@ -40,7 +40,7 @@ interface AnalyticsData {
   }>;
 }
 
-export default function InstituteAnalyticsPage() {
+function InstituteAnalyticsContent() {
   const searchParams = useSearchParams();
   const initialTab = searchParams.get("tab") === "reports" ? "reports" : "analytics";
 
@@ -361,5 +361,19 @@ export default function InstituteAnalyticsPage() {
         </main>
       </div>
     </div>
+  );
+}
+
+export default function InstituteAnalyticsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen bg-[#FAFAFA] items-center justify-center font-mono text-xs text-neutral-400">
+          Loading Placement Analytics & Reports...
+        </div>
+      }
+    >
+      <InstituteAnalyticsContent />
+    </Suspense>
   );
 }
