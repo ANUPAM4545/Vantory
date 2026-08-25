@@ -99,14 +99,14 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <div className="p-5 border-b border-neutral-200 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-neutral-950 text-white font-semibold flex items-center justify-center text-xs">
-                  {isCompanyContext ? "CO" : "SA"}
+                  {isCompanyContext ? "CO" : "VT"}
                 </div>
                 <div>
                   <span className="font-semibold tracking-tight text-neutral-950 text-sm block">
-                    {isCompanyContext ? "Company Portal" : "SkillAssociate"}
+                    {isCompanyContext ? "Company Portal" : "Vantory"}
                   </span>
                   <p className="text-[10px] text-neutral-500 font-sans font-medium">
-                    Build • Prepare • Get Hired
+                    Career Advantage + Direction
                   </p>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         {user?.name || (isCompanyContext ? "Corporate Employer" : "Candidate")}
                       </h5>
                       <p className="text-[10px] text-neutral-500 truncate font-mono">
-                        {user?.email || (isCompanyContext ? "hr@company.com" : "candidate@skillassociate.com")}
+                        {user?.email || (isCompanyContext ? "hr@company.com" : "candidate@vantory.com")}
                       </p>
                     </div>
                   </div>

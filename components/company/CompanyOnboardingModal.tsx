@@ -18,12 +18,23 @@ export function CompanyOnboardingModal() {
   const [website, setWebsite] = useState("");
 
   const checkOnboardingStatus = useCallback(async () => {
+    if (typeof window !== "undefined" && window.location.pathname.startsWith("/institute")) {
+      setIsLoading(false);
+      return;
+    }
+
     try {
       // Check current user role first to prevent 403 Forbidden for candidate/student sessions
       const authRes = await fetch("/api/auth/me");
       if (!authRes.ok) return;
       const authJson = await authRes.json();
-      if (!authJson.success || authJson.user?.role !== "COMPANY_ADMIN") return;
+      if (!authJson.success || !authJson.user || authJson.user?.role !== "COMPANY_ADMIN") return;
+
+      const userId = authJson.user.id;
+      if (typeof window !== "undefined" && sessionStorage.getItem(`company_onboarded_${userId}`) === "true") {
+        setIsLoading(false);
+        return;
+      }
 
       const res = await fetch("/api/company/profile");
       if (res.ok) {
@@ -39,6 +50,10 @@ export function CompanyOnboardingModal() {
             setCompanySize(json.profile.companySize || "11-50 Employees");
             setDescription(json.profile.description || "");
             setIsOpen(true);
+          } else {
+            if (typeof window !== "undefined") {
+              sessionStorage.setItem(`company_onboarded_${userId}`, "true");
+            }
           }
         }
       }
@@ -107,7 +122,7 @@ export function CompanyOnboardingModal() {
                 <span>Employer Setup — Step 1</span>
               </span>
               <h2 className="text-xl sm:text-2xl font-black text-neutral-950 tracking-tight">
-                Welcome to SkillAssociate Corporate!
+                Welcome to Vantory Corporate!
               </h2>
             </div>
           </div>
@@ -129,7 +144,7 @@ export function CompanyOnboardingModal() {
                   required
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="e.g. SkillAssociate Tech Ltd."
+                  placeholder="e.g. Vantory Tech Ltd."
                   className="w-full bg-white border border-neutral-300 rounded-xl p-3 text-xs text-neutral-950 font-bold focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950"
                 />
               </div>
@@ -224,7 +239,7 @@ export function CompanyOnboardingModal() {
                 type="url"
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
-                placeholder="https://skillassociate.dev"
+                placeholder="https://vantory.dev"
                 className="w-full bg-white border border-neutral-300 rounded-xl p-3 text-xs text-neutral-950 font-medium focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950"
               />
             </div>

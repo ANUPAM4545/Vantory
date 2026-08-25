@@ -32,7 +32,7 @@ export function Header({ onMobileMenuToggle, className }: HeaderProps) {
 
       <div className="flex items-center gap-3">
         <span className="text-xs font-mono text-neutral-400">
-          SkillAssociate Platform
+          Vantory Platform
         </span>
       </div>
     </header>

@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CreateJobModal } from "@/components/company/CreateJobModal";
+import { CompanyOnboardingModal } from "@/components/company/CompanyOnboardingModal";
+import { InstituteOnboardingModal } from "@/components/institute/InstituteOnboardingModal";
 
 export interface NavItem {
   name: string;
@@ -53,8 +55,7 @@ export const instituteNavItems: NavItem[] = [
   { name: "Student Roster", href: "/institute/students", icon: Users },
   { name: "Campus Jobs", href: "/institute/jobs", icon: Briefcase },
   { name: "Applications", href: "/institute/applications", icon: FileText },
-  { name: "Placement Analytics", href: "/institute/analytics", icon: BarChart3 },
-  { name: "Placement Reports", href: "/institute/reports", icon: BarChart3 },
+  { name: "Placement Analytics & Reports", href: "/institute/analytics", icon: BarChart3 },
   { name: "Institute Settings", href: "/institute/settings", icon: Settings },
 ];
 
@@ -164,18 +165,18 @@ export function Sidebar({ className }: { className?: string }) {
           <Link
             href={isInstituteContext ? "/institute/dashboard" : isCompanyContext ? "/company/dashboard" : "/dashboard"}
             className="flex items-center gap-3 group min-w-0"
-            title="SkillAssociate Portal"
+            title="Vantory Portal"
           >
             <div className="w-9 h-9 rounded-lg bg-neutral-950 text-white font-semibold flex items-center justify-center text-base tracking-tighter shadow-sm group-hover:scale-105 transition-transform shrink-0">
-              {isInstituteContext ? "IN" : isCompanyContext ? "CO" : "SA"}
+              {isInstituteContext ? "IN" : isCompanyContext ? "CO" : "VT"}
             </div>
             {!isCollapsed && (
               <div className="min-w-0 flex-1">
                 <span className="font-semibold tracking-tight text-sm text-neutral-950 group-hover:text-neutral-700 transition-colors block truncate">
-                  {isInstituteContext ? "Institute Portal" : isCompanyContext ? "Company Portal" : "SkillAssociate"}
+                  {isInstituteContext ? "Institute Portal" : isCompanyContext ? "Company Portal" : "Vantory"}
                 </span>
                 <p className="text-[10px] text-neutral-500 font-sans font-medium tracking-tight truncate">
-                  {isInstituteContext ? "Campus Ecosystem" : isCompanyContext ? "Verified Employer" : "Build • Prepare • Get Hired"}
+                  {isInstituteContext ? "Campus Ecosystem" : isCompanyContext ? "Verified Employer" : "Career Advantage + Direction"}
                 </p>
               </div>
             )}
@@ -328,7 +329,7 @@ export function Sidebar({ className }: { className?: string }) {
                     {user?.name || (isCompanyContext ? "Corporate Employer" : "Candidate")}
                   </h5>
                   <p className="text-[10px] text-neutral-500 truncate font-mono">
-                    {user?.email || (isCompanyContext ? "hr@company.com" : "candidate@skillassociate.com")}
+                    {user?.email || (isCompanyContext ? "hr@company.com" : "candidate@vantory.com")}
                   </p>
                 </div>
               )}
@@ -346,7 +347,9 @@ export function Sidebar({ className }: { className?: string }) {
       </div>
     </aside>
 
-    {/* Post New Corporate Opening Modal */}
+    {/* Onboarding & Action Modals */}
+    <CompanyOnboardingModal />
+    <InstituteOnboardingModal />
     <CreateJobModal
       isOpen={isCreateJobModalOpen}
       onClose={() => setIsCreateJobModalOpen(false)}
