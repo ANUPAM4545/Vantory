@@ -228,9 +228,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl sm:text-7xl font-semibold tracking-tight text-neutral-950 leading-[1.08] max-w-3xl flex flex-col items-center"
+          className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-neutral-950 leading-[1.1] max-w-5xl flex flex-col items-center text-center"
         >
-          <span className="flex items-center justify-center gap-2 h-16 sm:h-20 sm:min-h-[80px] overflow-hidden relative w-full">
+          <span className="flex items-center justify-center gap-2 h-14 sm:h-20 sm:min-h-[80px] overflow-hidden relative w-full">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
                 key={heroIndex}
@@ -238,17 +238,17 @@ export default function Home() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -28, opacity: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="inline-block text-neutral-950 font-semibold"
+                className="inline-block text-neutral-950 font-semibold whitespace-nowrap"
               >
                 {HERO_PHRASES[heroIndex]}
               </motion.span>
             </AnimatePresence>
-            <span className="inline-block w-1.5 h-10 sm:h-14 bg-neutral-950 align-middle animate-pulse shrink-0" />
+            <span className="inline-block w-1.5 h-8 sm:h-12 bg-neutral-950 align-middle animate-pulse shrink-0" />
           </span>
-          <span className="block text-neutral-950 font-semibold">
+          <span className="block text-neutral-950 font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-nowrap mt-1">
             Accelerate Your Career.
           </span>
-          <span className="block text-neutral-950 font-semibold text-4xl sm:text-6xl md:text-7xl mt-1">
+          <span className="block text-neutral-950 font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap mt-1 text-neutral-800">
             All From One Platform.
           </span>
         </motion.h1>
