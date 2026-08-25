@@ -2178,11 +2178,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Gigantic Watermark Background Typography (Sized to fit perfectly on one line) */}
-          <div className="pt-6 pb-2 text-center select-none pointer-events-none overflow-hidden">
-            <h1 className="text-[10.5vw] font-black tracking-tighter text-[#131315] uppercase leading-none opacity-90">
+          {/* Gigantic Premium Architectural Typography Header & Subtitle */}
+          <div className="pt-12 pb-6 text-center select-none pointer-events-none overflow-hidden relative border-t border-neutral-900/80 my-8 px-4">
+            <h1 className="text-[13.5vw] sm:text-[15vw] md:text-[15.5vw] font-black tracking-tight uppercase leading-none bg-gradient-to-b from-neutral-700 via-neutral-800 to-neutral-950 bg-clip-text text-transparent drop-shadow-2xl">
               VANTORY
             </h1>
+            <p className="text-[10px] sm:text-xs md:text-sm font-mono tracking-[0.25em] text-neutral-500 uppercase mt-2">
+              Career Advantage • Career Direction • Verified Ecosystem
+            </p>
           </div>
 
           {/* Bottom Status Bar */}
